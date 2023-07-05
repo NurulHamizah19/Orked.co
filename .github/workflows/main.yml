@@ -1,0 +1,23 @@
+name: Deploy to Production
+on:
+  push:
+    branches:
+      - master
+jobs:
+  run_pull:
+    name: run pull
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: install ssh keys
+      # check this thread to understand why its needed:
+      # https://stackoverflow.com/a/70447517
+      run: |
+        install -m 600 -D /dev/null ~/.ssh/id_rsa
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        ssh-keyscan -H 45.136.71.25 > ~/.ssh/known_hosts
+    - name: connect and pull
+      run: ssh admin@45.136.71.25 "cd /var/www/orkedco.shop && git checkout master && git pull && npm install && exit"
+    - name: cleanup
+      run: rm -rf ~/.ssh
+      # i dont care if u know the site and ip
