@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
-    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+    <link rel="icon" href="assets/images/orked.jpeg" type="image/png" />
     <!--plugins-->
     <link href="assets/plugins/OwlCarousel/css/owl.carousel.min.css" rel="stylesheet" />
 
@@ -37,18 +37,23 @@
                                     <i class="bx bx-menu"></i>
                                 </div>
                                 <div class="logo">
-                                    <a href="/index.php">
+                                    <a href="index.php">
                                         <img src="assets/images/orked.jpeg" class="logo-icon" alt="" />
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-xl order-4 order-xl-0">
+
+                        <!-- <div class="col-12 col-xl order-4 order-xl-0"> -->
+                        <form class="col-12 col-xl order-4 order-xl-0" method="GET" action="shop">
                             <div class="input-group flex-nowrap pb-3 pb-xl-0">
-                                <input type="text" class="form-control w-100 border-dark border border-3" placeholder="Search for Products">
-                                <button class="btn btn-dark btn-ecomm border-3" type="button">Search</button>
+                                <input type="hidden" name="category" value="All">
+                                <input type="text" name="search" class="form-control w-100 border-dark border border-3" placeholder="Search for Products">
+                                <button class="btn btn-dark btn-ecomm border-3" type="submit">Search</button>
                             </div>
-                        </div>
+                        </form>
+                        <!-- </div> -->
+
                         <div class="col-auto ms-auto">
                             <div class="top-cart-icons">
                                 <nav class="navbar navbar-expand">

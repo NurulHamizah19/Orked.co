@@ -1,0 +1,15 @@
+remove sales
+amend create order to these parameter
+-location item
+-stock use/dept
+
+make stock in copy create order
+make stock out copy create order
+remove po/do
+
+--core
+
+more breakdown siapa request,
+berapa approve, berapa keluar,
+tarikh keluar
+
