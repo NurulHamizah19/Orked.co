@@ -31,130 +31,7 @@ include_once 'template/header.php';
                     <div class="row">
                         <div class="col-12 col-xl-8">
                             <div class="shop-cart-list mb-3 p-3">
-                                <div class="row align-items-center g-3">
-                                    <div class="col-12 col-lg-6">
-                                        <div class="d-lg-flex align-items-center gap-3">
-                                            <div class="cart-img text-center text-lg-start">
-                                                <img src="assets/images/products/01.png" width="130" alt="">
-                                            </div>
-                                            <div class="cart-detail text-center text-lg-start">
-                                                <h6 class="mb-2">White Regular Polo T-Shirt</h6>
-                                                <p class="mb-0">Size: <span>Regular</span>
-                                                </p>
-                                                <p class="mb-2">Color: <span>White &amp; Blue</span>
-                                                </p>
-                                                <h5 class="mb-0">$19.00</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-lg-3">
-                                        <div class="cart-action text-center">
-                                            <input type="number" class="form-control rounded-0" value="2" min="1">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-lg-3">
-                                        <div class="text-center">
-                                            <div class="d-flex gap-3 justify-content-center justify-content-lg-end">
-                                                <a href="javascript:;" class="btn btn-outline-dark rounded-0 btn-ecomm"><i class="bx bx-x"></i>Remove</a>
-                                                <a href="javascript:;" class="btn btn-light rounded-0 btn-ecomm"><i class="bx bx-heart me-0"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row align-items-center g-3">
-                                    <div class="col-12 col-lg-6">
-                                        <div class="d-lg-flex align-items-center gap-3">
-                                            <div class="cart-img text-center text-lg-start">
-                                                <img src="assets/images/products/02.png" width="130" alt="">
-                                            </div>
-                                            <div class="cart-detail text-center text-lg-start">
-                                                <h6 class="mb-2">White Regular Polo T-Shirt</h6>
-                                                <p class="mb-0">Size: <span>Regular</span>
-                                                </p>
-                                                <p class="mb-2">Color: <span>White &amp; Blue</span>
-                                                </p>
-                                                <h5 class="mb-0">$19.00</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-lg-3">
-                                        <div class="cart-action text-center">
-                                            <input type="number" class="form-control rounded-0" value="2" min="1">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-lg-3">
-                                        <div class="text-center">
-                                            <div class="d-flex gap-3 justify-content-center justify-content-lg-end">
-                                                <a href="javascript:;" class="btn btn-outline-dark rounded-0 btn-ecomm"><i class="bx bx-x"></i>Remove</a>
-                                                <a href="javascript:;" class="btn btn-light rounded-0 btn-ecomm"><i class="bx bx-heart me-0"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row align-items-center g-3">
-                                    <div class="col-12 col-lg-6">
-                                        <div class="d-lg-flex align-items-center gap-3">
-                                            <div class="cart-img text-center text-lg-start">
-                                                <img src="assets/images/products/03.png" width="130" alt="">
-                                            </div>
-                                            <div class="cart-detail text-center text-lg-start">
-                                                <h6 class="mb-2">White Regular Polo T-Shirt</h6>
-                                                <p class="mb-0">Size: <span>Regular</span>
-                                                </p>
-                                                <p class="mb-2">Color: <span>White &amp; Blue</span>
-                                                </p>
-                                                <h5 class="mb-0">$19.00</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-lg-3">
-                                        <div class="cart-action text-center">
-                                            <input type="number" class="form-control rounded-0" value="2" min="1">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-lg-3">
-                                        <div class="text-center">
-                                            <div class="d-flex gap-3 justify-content-center justify-content-lg-end">
-                                                <a href="javascript:;" class="btn btn-outline-dark rounded-0 btn-ecomm"><i class="bx bx-x"></i>Remove</a>
-                                                <a href="javascript:;" class="btn btn-light rounded-0 btn-ecomm"><i class="bx bx-heart me-0"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row align-items-center g-3">
-                                    <div class="col-12 col-lg-6">
-                                        <div class="d-lg-flex align-items-center gap-3">
-                                            <div class="cart-img text-center text-lg-start">
-                                                <img src="assets/images/products/04.png" width="130" alt="">
-                                            </div>
-                                            <div class="cart-detail text-center text-lg-start">
-                                                <h6 class="mb-2">White Regular Polo T-Shirt</h6>
-                                                <p class="mb-0">Size: <span>Regular</span>
-                                                </p>
-                                                <p class="mb-2">Color: <span>White &amp; Blue</span>
-                                                </p>
-                                                <h5 class="mb-0">$19.00</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-lg-3">
-                                        <div class="cart-action text-center">
-                                            <input type="number" class="form-control rounded-0" value="2" min="1">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-lg-3">
-                                        <div class="text-center">
-                                            <div class="d-flex gap-3 justify-content-center justify-content-lg-end">
-                                                <a href="javascript:;" class="btn btn-outline-dark rounded-0 btn-ecomm"><i class="bx bx-x"></i>Remove</a>
-                                                <a href="javascript:;" class="btn btn-light rounded-0 btn-ecomm"><i class="bx bx-heart me-0"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
+                                <!-- Items -->
                                 <div class="d-lg-flex align-items-center gap-2">
                                     <a href="checkout-2.php" class="btn btn-dark btn-ecomm"><i class="bx bx-shopping-bag"></i> Continue Shoping</a>
                                     <a href="javascript:;" class="btn btn-light btn-ecomm ms-auto"><i class="bx bx-x-circle"></i> Clear Cart</a>
@@ -231,3 +108,52 @@ include_once 'template/header.php';
 <?php
 include_once 'template/footer.php';
 ?>
+<script>
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  const cartListContainer = document.getElementById("cartListContainer");
+
+  cartItems.forEach(item => {
+    // Create elements
+    const cartItemDiv = document.createElement("div");
+    cartItemDiv.className = "row align-items-center g-3";
+
+    const cartImageDiv = document.createElement("div");
+    cartImageDiv.className = "cart-img text-center text-lg-start";
+
+    const cartImage = document.createElement("img");
+    cartImage.src = "assets/images/products/01.png";
+    cartImage.width = "130";
+    cartImage.alt = "";
+
+    const cartDetailDiv = document.createElement("div");
+    cartDetailDiv.className = "cart-detail text-center text-lg-start";
+
+    const productNameH6 = document.createElement("h6");
+    productNameH6.className = "mb-2";
+    productNameH6.textContent = item.productName;
+
+    const sizeP = document.createElement("p");
+    sizeP.className = "mb-0";
+    sizeP.innerHTML = `Size: <span>${item.size}</span>`;
+
+    const colorP = document.createElement("p");
+    colorP.className = "mb-2";
+    colorP.innerHTML = `Color: <span>${item.color}</span>`;
+
+    const priceH5 = document.createElement("h5");
+    priceH5.className = "mb-0";
+    priceH5.textContent = item.price;
+
+    cartImageDiv.appendChild(cartImage);
+    cartDetailDiv.appendChild(productNameH6);
+    cartDetailDiv.appendChild(sizeP);
+    cartDetailDiv.appendChild(colorP);
+    cartDetailDiv.appendChild(priceH5);
+
+    cartItemDiv.appendChild(cartImageDiv);
+    cartItemDiv.appendChild(cartDetailDiv);
+
+    cartListContainer.appendChild(cartItemDiv);
+    cartListContainer.appendChild(document.createElement("hr"));
+  });
+</script>
