@@ -107,7 +107,7 @@ if (isset($_GET['id'])) {
                                     </div>
                                     <!--end row-->
                                     <div class="d-flex gap-2 mt-3">
-                                        <a href="javascript:;" class="btn btn-dark btn-ecomm"><i class="bx bxs-cart-add"></i>Add to Cart</a>
+                                        <a href="javascript:;" class="btn btn-dark btn-ecomm" onclick="addToCart(<?= $product['pid']; ?>)"><i class="bx bxs-cart-add"></i>Add to Cart</a>
                                     </div>
                                     <hr>
                                     <div class="product-sharing">

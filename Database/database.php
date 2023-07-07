@@ -24,6 +24,35 @@ class Database {
         }
     }
 
+    public function migrate($sqlFile) {
+        $truncateTables = "SET FOREIGN_KEY_CHECKS = 0;";
+        $truncateTables .= "SHOW TABLES;";
+        $tables = $this->getInstance()->query($truncateTables)->fetchAll(\PDO::FETCH_COLUMN);
+    
+        foreach ($tables as $table) {
+            $truncateQuery = "TRUNCATE TABLE $table;";
+            $this->getInstance()->exec($truncateQuery);
+            echo "Table $table truncated successfully.<br>";
+        }
+    
+        $sql = file_get_contents($sqlFile);
+        $statements = explode(';', $sql);
+    
+        foreach ($statements as $statement) {
+            if (trim($statement) === '') {
+                continue;
+            }
+    
+            try {
+                $this->getInstance()->exec($statement);
+                echo "Statement executed successfully: " . $statement . "<br>";
+            } catch (\PDOException $e) {
+                echo "Error executing statement: " . $e->getMessage() . "<br>";
+            }
+        }
+    }
+    
+
     public static function getInstance() {
         if (!self::$instance) {
             new self();
