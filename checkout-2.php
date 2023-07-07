@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="card rounded-0 shadow-none">
                                     <div class="card-body">
-                                        <h2 class="h5 mb-0">Choose Shipping Method</h2>
+                                        <h2 class="h5 mb-0">Available Shipping Method</h2>
                                         <div class="my-3 border-bottom"></div>
                                         <div class="table-responsive">
                                             <table class="table">
@@ -51,32 +51,7 @@
                                                     <tr>
                                                         <td>Flat Rate</td>
                                                         <td>2 days</td>
-                                                        <td>$10.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>International shipping</td>
-                                                        <td>12 days</td>
-                                                        <td>$12.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Same day delivery</td>
-                                                        <td>1 day</td>
-                                                        <td>$22.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Expedited shipping</td>
-                                                        <td>--</td>
-                                                        <td>$15.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Local Pickup</td>
-                                                        <td>--</td>
-                                                        <td>$0.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>UPS Ground</td>
-                                                        <td>2-5 days</td>
-                                                        <td>$16.00</td>
+                                                        <td>RM10.00</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

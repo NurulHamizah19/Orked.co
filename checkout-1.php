@@ -36,17 +36,6 @@
                                 </div>
                                 <div class="card rounded-0">
                                     <div class="card-body">
-                                        <div class="d-flex align-items-center mb-3">
-                                            <div class="">
-                                                <img src="assets/images/avatars/avatar-1.png" width="90" alt="" class="rounded-circle p-1 border">
-                                            </div>
-                                            <div class="ms-2">
-                                                <h6 class="mb-0">Jhon Michle</h6>
-                                                <p class="mb-0">michle@example.com</p>
-                                            </div>
-                                            <div class="ms-auto"> <a href="javascript:;" class="btn btn-light btn-ecomm"><i class="bx bx-edit"></i> Edit Profile</a>
-                                            </div>
-                                        </div>
                                         <div class="border p-3">
                                             <h2 class="h5 mb-0">Shipping Address</h2>
                                             <div class="my-3 border-bottom"></div>
@@ -54,66 +43,55 @@
                                                 <form class="row g-3">
                                                     <div class="col-md-6">
                                                         <label class="form-label">First Name</label>
-                                                        <input type="text" class="form-control rounded-0">
+                                                        <input name="firstName" type="text" class="form-control rounded-0">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Last Name</label>
-                                                        <input type="text" class="form-control rounded-0">
+                                                        <input name="lastName" type="text" class="form-control rounded-0">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label">E-mail id</label>
-                                                        <input type="text" class="form-control rounded-0">
+                                                        <label class="form-label">E-mail</label>
+                                                        <input name="email" type="text" class="form-control rounded-0">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Phone Number</label>
-                                                        <input type="text" class="form-control rounded-0">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">Company</label>
-                                                        <input type="text" class="form-control rounded-0">
+                                                        <input name="phoneNumber" type="text" class="form-control rounded-0">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">State/Province</label>
-                                                        <select class="form-select rounded-0">
-                                                            <option>United Kingdom</option>
-                                                            <option>California</option>
+                                                        <select name="state" class="form-select rounded-0">
+                                                            <option value="Johor">Johor</option>
+                                                            <option value="Kedah">Kedah</option>
+                                                            <option value="Kelantan">Kelantan</option>
+                                                            <option value="Melaka">Melaka</option>
+                                                            <option value="Negeri Sembilan">Negeri Sembilan</option>
+                                                            <option value="Pahang">Pahang</option>
+                                                            <option value="Perak">Perak</option>
+                                                            <option value="Perlis">Perlis</option>
+                                                            <option value="Pulau Pinang">Pulau Pinang</option>
+                                                            <option value="Sabah">Sabah</option>
+                                                            <option value="Sarawak">Sarawak</option>
+                                                            <option value="Selangor">Selangor</option>
+                                                            <option value="Terengganu">Terengganu</option>
+                                                            <option value="Kuala Lumpur">Kuala Lumpur</option>
+                                                            <option value="Labuan">Labuan</option>
+                                                            <option value="Putrajaya">Putrajaya</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Zip/Postal Code</label>
-                                                        <input type="text" class="form-control rounded-0">
+                                                        <input name="zipCode" type="text" class="form-control rounded-0">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label">Country</label>
-                                                        <select class="form-select rounded-0">
-                                                            <option>United States</option>
-                                                            <option>India</option>
-                                                            <option>China</option>
-                                                            <option>Turkey</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">Address 1</label>
-                                                        <textarea class="form-control rounded-0"></textarea>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="form-label">Address 2</label>
-                                                        <textarea class="form-control rounded-0"></textarea>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <h6 class="mb-0 h5">Billing Address</h6>
-                                                        <div class="my-3 border-bottom"></div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="gridCheck" checked="">
-                                                            <label class="form-check-label" for="gridCheck">Same as shipping address</label>
-                                                        </div>
+                                                        <label class="form-label">Address</label>
+                                                        <textarea name="address" class="form-control rounded-0"></textarea>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="d-grid"> <a href="cart" class="btn btn-light btn-ecomm"><i class="bx bx-chevron-left"></i>Back to Cart</a>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <div class="d-grid"> <a href="checkout-2" class="btn btn-dark btn-ecomm">Proceed to Checkout<i class="bx bx-chevron-right"></i></a>
+                                                        <div class="d-grid"> <a class="btn btn-dark btn-ecomm btn-proceed">Proceed to Checkout<i class="bx bx-chevron-right"></i></a>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -136,3 +114,16 @@
 </div>
 
 <?php include_once 'template/footer.php'; ?>
+
+<script>
+
+$(document).ready(function() {
+    document.querySelector('.btn-proceed').addEventListener('click', function(e) {
+        e.preventDefault();
+        saveCustomerData();
+        window.location.href = "checkout-2.html";
+    });
+    populateForm();
+});
+
+</script>

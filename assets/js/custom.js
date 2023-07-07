@@ -1,3 +1,18 @@
+$(document).ready(function() {
+  $('.btn-pay').click(function() {
+    Swal.fire({
+      title: 'Payment Confirmed',
+      text: 'Your payment has been successfully processed.',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
+
+    setTimeout(function() {
+      window.location.href = 'thank-you.php'; 
+    }, 3000); 
+  });
+});
+
 function shareOnTwitter() {
     var currentPageUrl = window.location.href;
     var twitterShareUrl = "https://twitter.com/intent/tweet?text=Check%20out%20this%20product:&url=" + encodeURIComponent(currentPageUrl);
@@ -79,7 +94,7 @@ function updateCart() {
           setTimeout(() => {
             location.reload();
           }, 2000); 
-          
+
         } else {
           Swal.fire({
               icon: 'error',
@@ -102,3 +117,39 @@ function updateCart() {
         throw new Error("Failed to fetch product");
       });
   }
+
+function saveCustomerData() {
+  var firstName = document.querySelector('input[name="firstName"]').value;
+  var lastName = document.querySelector('input[name="lastName"]').value;
+  var email = document.querySelector('input[name="email"]').value;
+  var phoneNumber = document.querySelector('input[name="phoneNumber"]').value;
+  var state = document.querySelector('select[name="state"]').value;
+  var city = document.querySelector('select[name="city"]').value;
+  var zipCode = document.querySelector('input[name="zipCode"]').value;
+  var address = document.querySelector('textarea[name="address"]').value;
+  
+  var customer = {
+    name: firstName + ' ' + lastName,
+    address: address,
+    postcode: zipCode,
+    city: city,
+    state: state,
+    phone: phoneNumber,
+    email: email
+  };
+  
+  localStorage.setItem('customerData', JSON.stringify(customer));
+}
+
+function populateForm() {
+  if (localStorage.getItem('customerData')) {
+    var customer = JSON.parse(localStorage.getItem('customerData'));
+    document.querySelector('input[name="firstName"]').value = customer.name.split(' ')[0];
+    document.querySelector('input[name="lastName"]').value = customer.name.split(' ')[1];
+    document.querySelector('input[name="email"]').value = customer.email;
+    document.querySelector('input[name="phoneNumber"]').value = customer.phone;
+    document.querySelector('select[name="state"]').value = customer.state;
+    document.querySelector('input[name="zipCode"]').value = customer.postcode;
+    document.querySelector('textarea[name="address"]').value = customer.address;
+  }
+}
