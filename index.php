@@ -141,7 +141,7 @@ $reviews = ReviewController::getLatestReviews();
                                             </div>
                                         </div>
                                         <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
-                                            <div class="h6 fw-bold">$<?php echo $product['saleprice']; ?></div>
+                                            <div class="h6 fw-bold">RM <?php echo $product['saleprice']; ?></div>
                                         </div>
                                     </div>
                                 </div>

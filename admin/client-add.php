@@ -69,7 +69,7 @@ if (isset($_POST['btnaddclient'])) {
                 </script>';
 
     $cid = $pdo->lastInsertId();
-    
+
     $sql = "INSERT INTO `client_pres` (`cid`, `sph_dv_r`, `cyl_dv_r`, `axix_dv_r`, `vn_dv_r`, `sph_nv_r`, `cyl_nv_r`, `axix_nv_r`, `vn_nv_r`, `add_r`, `sph_dv_l`, `cyl_dv_l`, `axix_dv_l`, `vn_dv_l`, `sph_nv_l`, `cyl_nv_l`, `axix_nv_l`, `vn_nv_l`, `add_l`)
         VALUES (:cid, :sph_dv_r, :cyl_dv_r, :axix_dv_r, :vn_dv_r, :sph_nv_r, :cyl_nv_r, :axix_nv_r, :vn_nv_r, :add_r, :sph_dv_l, :cyl_dv_l, :axix_dv_l, :vn_dv_l, :sph_nv_l, :cyl_nv_l, :axix_nv_l, :vn_nv_l, :add_l)";
 
@@ -99,7 +99,6 @@ if (isset($_POST['btnaddclient'])) {
 
     // Execute the statement
     $stmt->execute();
-
   } else {
     echo '<script type="text/javascript">
                 jQuery(function validation(){
@@ -139,24 +138,7 @@ if (isset($_POST['btnaddclient'])) {
 
     <div class="box box-info">
       <div class="box-header with-border">
-        <?php
-        if ($_SESSION['role'] != "Agent") {
-          echo '
-                <h3 class="box-title"><a href="clientlist.php" class="btn btn-primary" role="button">Back To Client List</a></h3>
-                ';
-        } else {
-          echo '
-                <h3 class="box-title"><a href="my_clientlist.php" class="btn btn-primary" role="button">Back To Client List</a></h3>
-                ';
-        }
-        ?>
-        <?php
-        if ($_SESSION['role'] == "Admin") {
-          echo '            <h3 class="box-title"><a href="massaddclient.php" class="btn btn-info" role="button">Upload client list (excel)</a></h3>
-                  ';
-        }
-
-        ?>
+        <h3 class="box-title"><a href="client-list.php" class="btn btn-primary" role="button">Back To Client List</a></h3>
       </div>
       <!-- /.box-header -->
       <!-- form start -->

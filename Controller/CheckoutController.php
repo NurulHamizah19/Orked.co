@@ -28,7 +28,7 @@ class CheckoutController
             $total = 0;
             $orderDate = date('Y-m-d');
             $paymentType = 'Credit';
-            $shipmentType = 0;
+            $shipmentType = 2;
 
             foreach ($cartItems as $cartItem) {
                 $subtotal += $cartItem['price'] * $cartItem['quantity'];
@@ -71,8 +71,6 @@ class CheckoutController
                 $stmt->bindValue(':orderDate', $orderDate);
                 $stmt->execute();
             }
-
-            echo '<script>localStorage.removeItem("cartItems");</script>';
 
             return 'success';
         } catch (\PDOException $e) {

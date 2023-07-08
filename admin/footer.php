@@ -1,11 +1,11 @@
 <footer class="main-footer div-to-hide">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      <small>Copyright <?php echo date('Y'); ?> by <a href="https://sfera.my"> Sfera Digital Solutions (MA0284366-K) </a></small>
+      <small>Copyright <?php echo date('Y'); ?> by Orked Co </small>
     </div>
     <!-- Default to the left -->
     
-    <small>SferaPOS v2.7.17</small>
+    <small>Orked Shop Backend System</small>
   </footer>
 
 

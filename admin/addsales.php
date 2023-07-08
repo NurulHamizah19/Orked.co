@@ -310,7 +310,7 @@ include 'connectdb.php';
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SferaPOS</title>
+  <title>Orked Shop</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- SweetAlert -->
@@ -404,7 +404,7 @@ include 'connectdb.php';
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="orderlist.php" class="navbar-brand"><b>Sfera</b>POS</a>
+          <a href="order-list.php" class="navbar-brand"><b>Orked</b>Shop</a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>

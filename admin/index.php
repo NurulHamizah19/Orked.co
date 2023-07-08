@@ -94,7 +94,7 @@ if(isset($_POST['btn_login'])){
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SferaPOS | Log in</title>
+  <title>Orked Shop | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -120,9 +120,6 @@ if(isset($_POST['btn_login'])){
 </head>
 <body class="hold-transition login-page" scroll="no" style="overflow: hidden">
 <div class="login-box">
-  <div class="login-logo">
-  <img src="sferapos.png" class="img-responsive" alt="">
-  </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
@@ -130,7 +127,7 @@ if(isset($_POST['btn_login'])){
     <form action="" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="User ID" name="login" required>
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <span class="glyphicon glyphicon-envelope orm-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="password" class="form-control" placeholder="Password" name="txt_password" required>

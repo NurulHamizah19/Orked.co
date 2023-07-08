@@ -42,3 +42,4 @@
 </div>
 
 <?php include_once 'template/footer.php'; ?>
+<script>localStorage.removeItem("cartItems");</script>

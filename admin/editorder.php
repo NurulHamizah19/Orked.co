@@ -225,7 +225,7 @@ while($rowpdt=$selectpdt->fetch(PDO::FETCH_OBJ)){
 }        
         
    //  echo"success fully created order";    
-   header('location:orderlist.php');     
+   header('location:order-list.php');     
         
     }    
     

@@ -111,9 +111,9 @@ desired effect
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>S</b>POS</span>
+      <span class="logo-mini">Orked</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Sfera</b>POS</span>
+      <span class="logo-lg"><b>Orked</b>Shop</span>
     </a>
 
     <!-- Header Navbar -->
@@ -207,9 +207,7 @@ desired effect
         <li><a href="productlist.php"><i class="fa fa-th-list"></i> <span>Product List</span></a></li>
         <li><a href="sales.php"><i class="fa fa-first-order"></i> <span>Add Sales</span></a></li> 
         <li><a href="createorder.php"><i class="fa fa-first-order"></i> <span>Add Order</span></a></li>
-        <li><a href="my_orderlist.php"><i class="fa fa-list-ul"></i> <span>My Sales/Order List</span></a></li>
         <?php if($_SESSION['role'] != "Agent") { echo '<li><a href="orderlist.php"><i class="fa fa-list-ul"></i> <span>Sales/Order List</span></a></li>'; } ?>
-        <?php if($_SESSION['role'] == "Agent") { echo '<li><a href="my_clientlist.php"><i class="fa fa-list-ul"></i> <span>My Client List</span></a></li>'; } ?>
         <?php if($_SESSION['role'] != "Agent") { echo '<li><a href="clientlist.php"><i class="fa fa-list-ul"></i> <span>Client List</span></a></li>'; } ?>
         
         <?php if($_SESSION['role'] != "Agent") {

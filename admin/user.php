@@ -69,7 +69,7 @@ include_once 'headeruser.php';
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="orderlist.php" class="small-box-footer">View order <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="order-list.php" class="small-box-footer">View order <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

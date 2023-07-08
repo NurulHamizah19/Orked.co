@@ -1,7 +1,7 @@
 <?php 
 include_once'connectdb.php';
 session_start();
-if($_SESSION['role'] == "User" or $_SESSION['role'] == "Agent"){
+if($_SESSION['role'] == "User"){
     include_once 'headeruser.php';
 } else {
     include_once 'header.php';
@@ -9,14 +9,13 @@ if($_SESSION['role'] == "User" or $_SESSION['role'] == "Agent"){
 if($_SESSION['useremail']==""){
     header('location:index.php');
 }
-$agentid = $_SESSION['userid'];
 ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-       My Client List
+        Client List
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -57,7 +56,7 @@ $agentid = $_SESSION['userid'];
                     </thead>
                     <tbody>
                         <?php
-                        $select = $pdo->prepare("SELECT * FROM tbl_client WHERE agentid=$agentid ORDER BY id desc");
+                        $select = $pdo->prepare("SELECT * FROM tbl_client ORDER BY id desc");
                         $select->execute();
                         while($row = $select->fetch(PDO::FETCH_OBJ)){
                             echo '
@@ -72,10 +71,10 @@ $agentid = $_SESSION['userid'];
                             <td>'.$row->email.'</td>
                             <td>'.$row->icnum.'</td>
                             <td>
-                            <a href="viewclient.php?id='.$row->id.'" class="btn btn-success" role="button"><span class="glyphicon glyphicon-eye-open" style ="color:#fffff" data-toggle="tooltip" title="Edit Order"
+                            <a href="client-view.php?id='.$row->id.'" class="btn btn-success" role="button"><span class="glyphicon glyphicon-eye-open" style ="color:#fffff" data-toggle="tooltip" title="Edit Order"
                             </td></a>
                             <td>
-                            <a href="editclient.php?id='.$row->id.'" class="btn btn-info" role="button"><span class="glyphicon glyphicon-edit" style ="color:#fffff" data-toggle="tooltip" title="Edit Order"
+                            <a href="client-edit.php?id='.$row->id.'" class="btn btn-info" role="button"><span class="glyphicon glyphicon-edit" style ="color:#fffff" data-toggle="tooltip" title="Edit Order"
                             </td></a>';
                             if($row->id != 0){
                               echo '<td>

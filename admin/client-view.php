@@ -5,42 +5,13 @@ if ($_SESSION['useremail'] == "") {
     header('location:index.php');
 }
 date_default_timezone_set('Asia/Kuala_Lumpur');
-if ($_SESSION['role'] == "User" or $_SESSION['role'] == "Agent") {
+if ($_SESSION['role'] == "User") {
     include_once 'headeruser.php';
 } else {
     include_once 'header.php';
 }
 include_once 'phpqrcode/qrlib.php';
 $id = $_GET['id'];
-
-$sql = "SELECT sph_dv_r, cyl_dv_r, axix_dv_r, vn_dv_r, sph_nv_r, cyl_nv_r, axix_nv_r, vn_nv_r, add_r,
-        sph_dv_l, cyl_dv_l, axix_dv_l, vn_dv_l, sph_nv_l, cyl_nv_l, axix_nv_l, vn_nv_l, add_l
-        FROM client_pres
-        WHERE cid = $id";
-
-$stmt = $pdo->query($sql);
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-// Assign the values to variables
-$sph_dv_r = $row['sph_dv_r'];
-$cyl_dv_r = $row['cyl_dv_r'];
-$axix_dv_r = $row['axix_dv_r'];
-$vn_dv_r = $row['vn_dv_r'];
-$sph_nv_r = $row['sph_nv_r'];
-$cyl_nv_r = $row['cyl_nv_r'];
-$axix_nv_r = $row['axix_nv_r'];
-$vn_nv_r = $row['vn_nv_r'];
-$add_r = $row['add_r'];
-
-$sph_dv_l = $row['sph_dv_l'];
-$cyl_dv_l = $row['cyl_dv_l'];
-$axix_dv_l = $row['axix_dv_l'];
-$vn_dv_l = $row['vn_dv_l'];
-$sph_nv_l = $row['sph_nv_l'];
-$cyl_nv_l = $row['cyl_nv_l'];
-$axix_nv_l = $row['axix_nv_l'];
-$vn_nv_l = $row['vn_nv_l'];
-$add_l = $row['add_l'];
 
 ?>
 <style>
@@ -52,21 +23,17 @@ $add_l = $row['add_l'];
     document.addEventListener('DOMContentLoaded', function() {
         var divsToHide = document.getElementsByClassName('div-to-hide');
 
-        // Function to hide the divs when printing
         function hideDivsOnPrint() {
             for (var i = 0; i < divsToHide.length; i++) {
                 divsToHide[i].classList.add('hidden');
             }
         }
 
-        // Function to show the divs after printing
         function showDivsAfterPrint() {
             for (var i = 0; i < divsToHide.length; i++) {
                 divsToHide[i].classList.remove('hidden');
             }
         }
-
-        // Listen for beforeprint and afterprint events
         if (window.matchMedia) {
             var mediaQueryList = window.matchMedia('print');
             mediaQueryList.addListener(function(mql) {
@@ -77,8 +44,6 @@ $add_l = $row['add_l'];
                 }
             });
         }
-
-        // Fallback for browsers without matchMedia support
         window.onbeforeprint = hideDivsOnPrint;
         window.onafterprint = showDivsAfterPrint;
     });
@@ -107,7 +72,7 @@ $add_l = $row['add_l'];
                 <?php
                 if ($_SESSION['role'] != "Agent") {
                     echo '
-                <h3 class="box-title div-to-hide"><a href="clientlist.php" class="btn btn-primary" role="button">Back To Client List</a></h3>
+                <h3 class="box-title div-to-hide"><a href="client-list.php" class="btn btn-primary" role="button">Back To Client List</a></h3>
                 ';
                 } else {
                     echo '
@@ -139,7 +104,7 @@ $add_l = $row['add_l'];
                       <li class="list-group-item div-to-hide">Last Updated <span class="label label-info pull-right" style="font-size:14px;">' . $row->timestamp . '</span></li>
                     </ul>';
                 } ?>
-<button class="btn btn-primary div-to-hide" onclick="window.print()">Print</button>
+                <button class="btn btn-primary div-to-hide" onclick="window.print()">Print</button>
 
             </div>
             <div class="col-md-6 div-to-hide">
@@ -178,100 +143,6 @@ $add_l = $row['add_l'];
                 </div>
 
             </div>
-
-            <div class="col-md-6">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Prescription (Right)</h3>
-                    </div>
-
-                    <div class="box-body no-padding">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <th>SPH DV</th>
-                                    <th>CYL DV</th>
-                                    <th>AXIX DV</th>
-                                    <th>V/N DV</th>
-                                </tr>
-                                <tr>
-                                    <td><?php echo $sph_dv_r; ?></td>
-                                    <td><?php echo $cyl_dv_r; ?></td>
-                                    <td><?php echo $axix_dv_r; ?></td>
-                                    <td><?php echo $vn_dv_r; ?></td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>SPH NV</th>
-                                    <th>CYL NV</th>
-                                    <th>AXIX NV</th>
-                                    <th>V/N NV</th>
-                                </tr>
-                                <tr>
-                                    <td><?php echo $sph_nv_r; ?></td>
-                                    <td><?php echo $cyl_nv_r; ?></td>
-                                    <td><?php echo $axix_nv_r; ?></td>
-                                    <td><?php echo $vn_nv_r; ?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="box-footer clearfix">
-                        <tr>
-                            <td>ADD: <?php echo $add_r; ?></td>
-                        </tr>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Prescription (Left)</h3>
-                    </div>
-
-                    <div class="box-body no-padding">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <th>SPH DV</th>
-                                    <th>CYL DV</th>
-                                    <th>AXIX DV</th>
-                                    <th>V/N DV</th>
-                                </tr>
-                                <tr>
-                                    <td><?php echo $sph_dv_l; ?></td>
-                                    <td><?php echo $cyl_dv_l; ?></td>
-                                    <td><?php echo $axix_dv_l; ?></td>
-                                    <td><?php echo $vn_dv_l; ?></td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>SPH NV</th>
-                                    <th>CYL NV</th>
-                                    <th>AXIX NV</th>
-                                    <th>V/N NV</th>
-                                </tr>
-                                <tr>
-                                    <td><?php echo $sph_nv_l; ?></td>
-                                    <td><?php echo $cyl_nv_l; ?></td>
-                                    <td><?php echo $axix_nv_l; ?></td>
-                                    <td><?php echo $vn_nv_l; ?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="box-footer clearfix">
-                        <tr>
-                            <td>ADD: <?php echo $add_l; ?></td>
-                        </tr>
-                    </div>
-                </div>
-
-            </div>
-
-
-
 
         </div>
 

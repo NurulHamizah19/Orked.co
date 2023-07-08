@@ -39,7 +39,7 @@
                                     <i class="bx bx-menu"></i>
                                 </div>
                                 <div class="logo">
-                                    <a href="index.php">
+                                    <a href="index">
                                         <img src="assets/images/orked.jpeg" class="logo-icon" alt="" />
                                     </a>
                                 </div>
@@ -61,7 +61,7 @@
                                 <nav class="navbar navbar-expand">
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown dropdown-large">
-                                            <a href="#" class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link" data-bs-toggle="dropdown"> <span class="alert-count totalItems">8</span>
+                                            <a href="#" class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link" data-bs-toggle="dropdown"> <span class="alert-count totalItems">0</span>
                                                 <i class='bx bx-shopping-bag'></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-end">
@@ -117,15 +117,15 @@
                         <div class="offcanvas-body primary-menu">
                             <ul class="navbar-nav justify-content-start flex-grow-1 gap-1">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.php">Home</a>
+                                    <a class="nav-link" href="index">Home</a>
                                 </li>
-                                <li class="nav-item"> <a class="nav-link" href="shop.php">Products</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="about-us.php">About</a>
+                                <li class="nav-item"> <a class="nav-link" href="shop">Shop</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="feedback.php">Feedback</a>
+                                    <a class="nav-link" href="about-us">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="feedback">Feedback</a>
                                 </li>
 
                             </ul>

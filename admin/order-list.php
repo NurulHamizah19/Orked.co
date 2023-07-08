@@ -50,7 +50,6 @@ function client_data($pdo ,$cid){
         -------------------------->
         <div class="box box-warning">
             <div class="box-header with-border">
-            <h3 class="box-title"><a href="sales.php" class="btn btn-primary" role="button">Add Sales</a></h3>
                 <h3 class="box-title"><a href="createorder.php" class="btn btn-info" role="button">Add Order</a></h3>
             </div>
             
@@ -66,11 +65,10 @@ function client_data($pdo ,$cid){
                             <th>Paid</th>
                             <th>Due</th>
                             <th>Payment Type</th>
-                            <th>Commissions (RM)</th>
-                            <th>View</th>
+                            <th>Status</th>
+                            <th> Order</th>
                             
                             <th>Print</th>
-                            <th>Print (Thermal)</th>
                             <?php 
                             if($_SESSION['role'] != "User"){
                               echo '<th>Edit</th>
@@ -82,8 +80,7 @@ function client_data($pdo ,$cid){
                     </thead>
                     <tbody>
                         <?php
-                        $current_id = $_SESSION['userid'];
-                        $select = $pdo->prepare("SELECT * FROM tbl_invoice WHERE agentid = $current_id ORDER BY invoice_id DESC");
+                        $select = $pdo->prepare("SELECT * FROM tbl_invoice ORDER BY invoice_id desc");
                         $select->execute();
                         while($row = $select->fetch(PDO::FETCH_OBJ)){
                           $cid = $row->customer_name;
@@ -104,15 +101,12 @@ function client_data($pdo ,$cid){
                             }
                             echo'
                             <td>'.$row->payment_type.'</td>
-                            <td>'.number_format($row->comms,2).'</td>
+                            <td>'.$row->status.'</td>
                             <td>
-                            <a href="vieworder.php?id='.$row->invoice_id.'" class="btn btn-info" role="button"><span class="glyphicon glyphicon-eye-open" style ="color:#fffff" data-toggle="tooltip" title="Ship Order"
+                            <a href="order-view.php?id='.$row->invoice_id.'" class="btn btn-info" role="button"><span class="glyphicon glyphicon-eye-open" style ="color:#fffff" data-toggle="tooltip" title="View Order"
                             </td></a>
                             <td>
                             <a href="invoice.php?id='.$row->invoice_id.'" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-print" style ="color:#fffff" data-toggle="tooltip" title="Print Invoice"
-                            </td></a>
-                            <td>
-                            <a href="invoice_thermal.php?id='.$row->invoice_id.'" class="btn btn-success" role="button" target="_blank"><span class="glyphicon glyphicon-print" style ="color:#fffff" data-toggle="tooltip" title="Edit Order"
                             </td></a>
                             <td>';
                             if($_SESSION['role'] != "User"){

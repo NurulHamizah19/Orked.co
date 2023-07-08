@@ -179,9 +179,9 @@
           <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
           <li><a href="category.php"><i class="fa fa-list-alt"></i> <span>Category</span></a></li>
           <li><a href="register.php"><i class="fa fa-registered"></i> <span>Register</span></a></li>
-          <li><a href="clientlist.php"><i class="fa fa-users"></i> <span>Client</span></a></li>
+          <li><a href="client-list.php"><i class="fa fa-users"></i> <span>Client</span></a></li>
           <li><a href="createorder.php"><i class="fa fa-first-order"></i> <span>Add Order</span></a></li>
-          <li><a href="orderlist.php"><i class="fa fa-list-ul"></i> <span>Sales/Order List</span></a></li>
+          <li><a href="order-list.php"><i class="fa fa-list-ul"></i> <span>Sales/Order List</span></a></li>
 
 
           <li class="treeview">
