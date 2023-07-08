@@ -22,7 +22,7 @@
     <link href="assets/css/app.css" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
     <link href="assets/css/icons.css" rel="stylesheet">
-    <title>Shopingo - eCommerce HTML Template</title>
+    <title>Orked Shop</title>
 </head>
 
 <body>
@@ -61,18 +61,18 @@
                                 <nav class="navbar navbar-expand">
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown dropdown-large">
-                                            <a href="#" class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link" data-bs-toggle="dropdown"> <span class="alert-count">8</span>
+                                            <a href="#" class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link" data-bs-toggle="dropdown"> <span class="alert-count totalItems">8</span>
                                                 <i class='bx bx-shopping-bag'></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-end">
                                                 <a href="cart.php">
                                                     <div class="cart-header">
-                                                        <p class="cart-header-title mb-0">8 ITEMS</p>
+                                                        <p class="cart-header-title mb-0"><span class="totalItems"></span> ITEMS</p>
                                                         <p class="cart-header-clear ms-auto mb-0">VIEW CART</p>
                                                     </div>
                                                 </a>
-                                                <div class="cart-list">
-                                                    <a class="dropdown-item" href="javascript:;">
+                                                <div class="cart-list" id="minicartItemsContainer">
+                                                    <!-- <a class="dropdown-item" href="javascript:;">
                                                         <div class="d-flex align-items-center">
                                                             <div class="flex-grow-1">
                                                                 <h6 class="cart-product-title">Men White T-Shirt</h6>
@@ -86,12 +86,12 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </a>
+                                                    </a> -->
                                                 </div>
                                                 <a href="cart.php">
                                                     <div class="text-center cart-footer d-flex align-items-center">
                                                         <h5 class="mb-0">TOTAL</h5>
-                                                        <h5 class="mb-0 ms-auto">$189.00</h5>
+                                                        <h5 class="mb-0 ms-auto totalCart">RM0</h5>
                                                     </div>
                                                 </a>
                                                 <div class="d-grid p-3 border-top"> <a href="checkout-1" class="btn btn-dark btn-ecomm">CHECKOUT</a>
@@ -135,3 +135,67 @@
             </div>
         </div>
         <!--end top header wrapper-->
+
+        <script>
+            // Retrieve cartItems from localStorage
+            let minicartItems = JSON.parse(localStorage.getItem('cartItems'));
+
+            // Get the container element where the cart items will be populated
+            let miniContainer = document.getElementById('minicartItemsContainer');
+            let totalCart = 0;
+            // Iterate over each cart item and generate the HTML dynamically
+            minicartItems.forEach(function(cartItem) {
+
+                let itemPrice = parseFloat(cartItem.price);
+                let itemQuantity = parseInt(cartItem.quantity);
+                let itemTotalPrice = itemPrice * itemQuantity;
+
+                totalCart += itemTotalPrice;
+
+                // Create the elements for each cart item
+                let itemMiniContainer = document.createElement('a');
+                itemMiniContainer.classList.add('dropdown-item');
+                itemMiniContainer.href = 'product-details?id=' + cartItem.productId;
+
+                let itemMiniContent = document.createElement('div');
+                itemMiniContent.classList.add('d-flex', 'align-items-center');
+
+                let itemMiniDetails = document.createElement('div');
+                itemMiniDetails.classList.add('flex-grow-1');
+
+                let itemMiniTitle = document.createElement('h6');
+                itemMiniTitle.classList.add('cart-product-title');
+                itemMiniTitle.textContent = cartItem.productName;
+
+                let itemMiniPrice = document.createElement('p');
+                itemMiniPrice.classList.add('cart-product-price');
+                itemMiniPrice.textContent = cartItem.quantity + ' X RM' + cartItem.price;
+
+                let itemMiniCancel = document.createElement('div');
+                itemMiniCancel.classList.add('cart-product-cancel', 'position-absolute');
+                itemMiniCancel.innerHTML = '<i class="bx bx-x"></i>';
+
+                let itemMiniImage = document.createElement('div');
+                itemMiniImage.classList.add('cart-product');
+
+                let image = document.createElement('img');
+                image.src = 'admin/productImages/' + cartItem.productImage;
+
+                // Assemble the elements
+                itemMiniDetails.appendChild(itemMiniTitle);
+                itemMiniDetails.appendChild(itemMiniPrice);
+                itemMiniContent.appendChild(itemMiniDetails);
+                itemMiniContent.appendChild(itemMiniCancel);
+                itemMiniImage.appendChild(image);
+                itemMiniContent.appendChild(itemMiniImage);
+                itemMiniContainer.appendChild(itemMiniContent);
+
+                // Append the cart item to the container
+                miniContainer.appendChild(itemMiniContainer);
+            });
+
+            let totalCartElement = document.querySelector('.totalCart');
+            totalCartElement.textContent = 'RM ' + totalCart.toFixed(2);
+            let totalItemsElement = document.querySelector('.totalItems');
+            totalItemsElement.textContent = minicartItems.length.toString();
+        </script>

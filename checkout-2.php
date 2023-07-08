@@ -6,7 +6,7 @@
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
             <div class="container">
                 <div class="page-breadcrumb d-flex align-items-center">
-                    <h3 class="breadcrumb-title pe-3">Checkout</h3>
+                    <h3 class="breadcrumb-title pe-3">Shipping</h3>
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="card rounded-0 shadow-none">
                                     <div class="card-body">
-                                        <h2 class="h5 mb-0">Available Shipping Method</h2>
+                                        <h2 class="h5 mb-0">Review Shipping Method</h2>
                                         <div class="my-3 border-bottom"></div>
                                         <div class="table-responsive">
                                             <table class="table">

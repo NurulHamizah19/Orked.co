@@ -19,83 +19,84 @@
 </div> -->
 
 <div class="order-summary">
-	<div class="card rounded-0">
-            <div class="card-body">
-                    <div class="card rounded-0 border bg-transparent shadow-none">
-                    <div class="card-body">
-                <p class="fs-5">Order summary</p>
-                <div class="my-3 border-top"></div>
-                <!-- item pergi sini -->
-                <div id="orderDetailsContainer"></div>
+  <div class="card rounded-0">
+    <div class="card-body">
+      <div class="card rounded-0 border bg-transparent shadow-none">
+        <div class="card-body">
+          <p class="fs-5">Order summary</p>
+          <div class="my-3 border-top"></div>
+          <!-- item pergi sini -->
+          <div id="orderDetailsContainer"></div>
 
-                <div class="my-3 border-top"></div>
-            </div>
-			</div>
-			<div class="card rounded-0 border bg-transparent mb-0 shadow-none">
-				<div class="card-body">
-					<p class="mb-2">Subtotal: <span class="float-end" id="subtotal">$198.00</span>
-					</p>
-					<p class="mb-2">Shipping (Flat rate): <span class="float-end">RM 10.00</span>
-					</p>
-					<div class="my-3 border-top"></div>
-					<h5 class="mb-0">Order Total: <span class="float-end" id="orderTotal"></span></h5>
-				</div>
-			</div>
-		</div>
-	</div>
+          <div class="my-3 border-top"></div>
+        </div>
+      </div>
+      <div class="card rounded-0 border bg-transparent mb-0 shadow-none">
+        <div class="card-body">
+          <p class="mb-2">Subtotal: <span class="float-end" id="subtotal">$198.00</span>
+          </p>
+          <p class="mb-2">Shipping (Flat rate): <span class="float-end">RM 10.00</span>
+          </p>
+          <div class="my-3 border-top"></div>
+          <h5 class="mb-0">Order Total: <span class="float-end" id="orderTotal"></span></h5>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- reload jquery just in case -->
 <script src="assets/js/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-  const orderDetailsContainer = document.getElementById("orderDetailsContainer");
-  function populateOrderDetails() {
-    orderDetailsContainer.innerHTML = ""; 
-    let subtotal = 0;
-    cartItems.forEach(item => {
-      const orderItemDiv = document.createElement("div");
-      orderItemDiv.className = "d-flex align-items-center";
+  $(document).ready(function() {
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const orderDetailsContainer = document.getElementById("orderDetailsContainer");
 
-      const itemDetailDiv = document.createElement("div");
-      itemDetailDiv.className = "ps-2";
+    function populateOrderDetails() {
+      orderDetailsContainer.innerHTML = "";
+      let subtotal = 0;
+      cartItems.forEach(item => {
+        const orderItemDiv = document.createElement("div");
+        orderItemDiv.className = "d-flex align-items-center";
 
-      const itemNameH6 = document.createElement("h6");
-      itemNameH6.className = "mb-1";
-      itemNameH6.innerHTML = `<a href="javascript:;" class="text-dark">${item.productName}</a>`;
+        const itemDetailDiv = document.createElement("div");
+        itemDetailDiv.className = "ps-2";
 
-      const itemMetaDiv = document.createElement("div");
-      itemMetaDiv.className = "widget-product-meta";
+        const itemNameH6 = document.createElement("h6");
+        itemNameH6.className = "mb-1";
+        itemNameH6.innerHTML = `<a href="javascript:;" class="text-dark">${item.productName}</a>`;
 
-      const itemPriceSpan = document.createElement("span");
-      itemPriceSpan.className = "me-2";
-      itemPriceSpan.textContent = `$${item.price}`;
+        const itemMetaDiv = document.createElement("div");
+        itemMetaDiv.className = "widget-product-meta";
 
-      const itemQuantitySpan = document.createElement("span");
-      itemQuantitySpan.textContent = `x ${item.quantity}`;
+        const itemPriceSpan = document.createElement("span");
+        itemPriceSpan.className = "me-2";
+        itemPriceSpan.textContent = `RM ${item.price}`;
 
-      itemMetaDiv.appendChild(itemPriceSpan);
-      itemMetaDiv.appendChild(itemQuantitySpan);
+        const itemQuantitySpan = document.createElement("span");
+        itemQuantitySpan.textContent = `x ${item.quantity}`;
 
-      itemDetailDiv.appendChild(itemNameH6);
-      itemDetailDiv.appendChild(itemMetaDiv);
+        itemMetaDiv.appendChild(itemPriceSpan);
+        itemMetaDiv.appendChild(itemQuantitySpan);
 
-      orderItemDiv.appendChild(itemDetailDiv);
+        itemDetailDiv.appendChild(itemNameH6);
+        itemDetailDiv.appendChild(itemMetaDiv);
 
-      orderDetailsContainer.appendChild(orderItemDiv);
+        orderItemDiv.appendChild(itemDetailDiv);
 
-      subtotal += item.price * item.quantity;
-    });
+        orderDetailsContainer.appendChild(orderItemDiv);
 
-    const shippingRate = 10.0;
-    const orderTotal = subtotal + shippingRate;
+        subtotal += item.price * item.quantity;
+      });
 
-    const subtotalElement = document.getElementById("subtotal");
-    const orderTotalElement = document.getElementById("orderTotal");
-    subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-    orderTotalElement.textContent = `$${orderTotal.toFixed(2)}`;
-  }
+      const shippingRate = 10.0;
+      const orderTotal = subtotal + shippingRate;
 
-  populateOrderDetails();
-});
+      const subtotalElement = document.getElementById("subtotal");
+      const orderTotalElement = document.getElementById("orderTotal");
+      subtotalElement.textContent = `RM ${subtotal.toFixed(2)}`;
+      orderTotalElement.textContent = `RM ${orderTotal.toFixed(2)}`;
+    }
+
+    populateOrderDetails();
+  });
 </script>

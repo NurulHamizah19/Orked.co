@@ -1,5 +1,5 @@
-$(document).ready(function() {
-  $('.btn-pay').click(function() {
+$(document).ready(function () {
+  $('.thank-you').click(function () {
     Swal.fire({
       title: 'Payment Confirmed',
       text: 'Your payment has been successfully processed.',
@@ -7,22 +7,69 @@ $(document).ready(function() {
       confirmButtonText: 'OK'
     });
 
-    setTimeout(function() {
-      window.location.href = 'thank-you.php'; 
-    }, 3000); 
+    setTimeout(function () {
+      window.location.href = 'thank-you.php';
+    }, 3000);
+  });
+
+  $('.btn-review').click(function () {
+
+    var name = $('.name').val();
+    var email = $('.email').val();
+    var rating = $('.rating').val();
+    var comment = $('.comment').val();
+
+    // Perform client-side validation
+    if (name.trim() === '' || email.trim() === '' || rating.trim() === '' || comment.trim() === '') {
+      Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
+      }).fire({
+        icon: 'warning',
+        title: 'Oops..',
+        text: 'Please fill in all the fields!'
+      });
+      return;
+    }
+
+    var formData = $('.review').serialize();
+
+    $.ajax({
+      url: 'review-save.php',
+      type: 'POST',
+      data: formData,
+      success: function (response) {
+        console.log(response)
+        if (response) {
+          $('.add-review').empty().html('<h6 class="form-body p-3">Thank you for your review!</h6>');
+        } else {
+          console.log('failed to save');
+        }
+      },
+      error: function () {
+        console.log('error');
+      }
+    });
   });
 });
 
 function shareOnTwitter() {
-    var currentPageUrl = window.location.href;
-    var twitterShareUrl = "https://twitter.com/intent/tweet?text=Check%20out%20this%20product:&url=" + encodeURIComponent(currentPageUrl);
-    window.open(twitterShareUrl, "_blank");
+  var currentPageUrl = window.location.href;
+  var twitterShareUrl = "https://twitter.com/intent/tweet?text=Check%20out%20this%20product:&url=" + encodeURIComponent(currentPageUrl);
+  window.open(twitterShareUrl, "_blank");
 }
 
 function shareOnFacebook() {
-    var currentPageUrl = window.location.href;
-    var facebookShareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(currentPageUrl);
-    window.open(facebookShareUrl, "_blank");
+  var currentPageUrl = window.location.href;
+  var facebookShareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(currentPageUrl);
+  window.open(facebookShareUrl, "_blank");
 }
 
 function clearCart() {
@@ -36,11 +83,11 @@ function clearCart() {
   });
   setTimeout(() => {
     location.reload();
-  }, 2000); 
+  }, 2000);
 }
 
 function updateCart() {
-  const quantityInputs = document.querySelectorAll(".product-info-section select:nth-child(1)");
+  const quantityInputs = document.querySelectorAll(".totalQty");
 
   cartItems.forEach((item, index) => {
     const updatedQuantity = parseInt(quantityInputs[index].value, 10);
@@ -60,74 +107,77 @@ function updateCart() {
 
   setTimeout(() => {
     location.reload();
-  }, 2000); 
+  }, 2000);
 }
 
-  function addToCart(productId) {
+function addToCart(productId) {
 
-    getProductById(productId)
-      .then(product => {
-        if (product) {
-          const productName = product.name;
-          const price = product.price;
-          const quantity = document.querySelector(".product-info-section select:nth-child(1)").value;
-          const size = document.querySelector(".product-info-section select:nth-child(2)").value;
+  getProductById(productId)
+    .then(product => {
+      if (product) {
+        const productName = product.pname;
+        const productImage = product.pimage;
+        const price = product.saleprice;
+        const quantity = document.querySelector(".qty").value;
+        const size = document.querySelector(".size").value;
 
-          const cartItem = {
-            productName: productName,
-            price: price,
-            quantity: quantity,
-            size: size
-          };
+        const cartItem = {
+          productImage: productImage,
+          productName: productName,
+          productId: productId,
+          price: price,
+          quantity: quantity,
+          size: size
+        };
+        console.log(cartItem)
+        let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        cartItems.push(cartItem);
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
-          let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-          cartItems.push(cartItem);
-          localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        Swal.fire({
+          icon: 'success',
+          title: 'Item added to cart!',
+          showConfirmButton: false,
+          timer: 1500
+        });
 
-          Swal.fire({
-            icon: 'success',
-            title: 'Item added to cart!',
-            showConfirmButton: false,
-            timer: 1500
-          });
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
 
-          setTimeout(() => {
-            location.reload();
-          }, 2000); 
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Product not found!',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    })
+    .catch(error => {
+      console.error("Error fetching product:", error);
+      alert("Error fetching product. Please try again." + error);
+    });
+}
 
-        } else {
-          Swal.fire({
-              icon: 'error',
-              title: 'Product not found!',
-              showConfirmButton: false,
-              timer: 1500
-            });
-        }
-      })
-      .catch(error => {
-        console.error("Error fetching product:", error);
-        alert("Error fetching product. Please try again.");
-      });
-  }
+function getProductById(productId) {
+  return fetch(`product-get.php?id=${productId}`)
+    .then(response => response.json())
+    .catch(error => {
+      throw new Error("Failed to fetch product");
+    });
+}
 
-  function getProductById(productId) {
-    return fetch(`/product-get?id=${productId}`)
-      .then(response => response.json())
-      .catch(error => {
-        throw new Error("Failed to fetch product");
-      });
-  }
-
-function saveCustomerData() {
+function saveCustomerDataForm() {
   var firstName = document.querySelector('input[name="firstName"]').value;
   var lastName = document.querySelector('input[name="lastName"]').value;
   var email = document.querySelector('input[name="email"]').value;
   var phoneNumber = document.querySelector('input[name="phoneNumber"]').value;
   var state = document.querySelector('select[name="state"]').value;
-  var city = document.querySelector('select[name="city"]').value;
+  var city = document.querySelector('input[name="city"]').value;
   var zipCode = document.querySelector('input[name="zipCode"]').value;
   var address = document.querySelector('textarea[name="address"]').value;
-  
+
   var customer = {
     name: firstName + ' ' + lastName,
     address: address,
@@ -137,7 +187,7 @@ function saveCustomerData() {
     phone: phoneNumber,
     email: email
   };
-  
+
   localStorage.setItem('customerData', JSON.stringify(customer));
 }
 
@@ -148,8 +198,62 @@ function populateForm() {
     document.querySelector('input[name="lastName"]').value = customer.name.split(' ')[1];
     document.querySelector('input[name="email"]').value = customer.email;
     document.querySelector('input[name="phoneNumber"]').value = customer.phone;
+    document.querySelector('input[name="city"]').value = customer.city;
     document.querySelector('select[name="state"]').value = customer.state;
     document.querySelector('input[name="zipCode"]').value = customer.postcode;
     document.querySelector('textarea[name="address"]').value = customer.address;
+  }
+}
+
+function isFormValid() {
+  var formElements = document.querySelectorAll('.customer-details .form-control');
+  for (var i = 0; i < formElements.length; i++) {
+    if (formElements[i].value.trim() === '') {
+      return false;
+    }
+  }
+  return true;
+}
+
+function isCardValid() {
+  var formElements = document.querySelectorAll('.payment-details .form-control');
+  for (var i = 0; i < formElements.length; i++) {
+    if (formElements[i].value.trim() === '') {
+      return false;
+    }
+  }
+  return true;
+}
+
+function saveCustomerData() {
+  const customerData = JSON.parse(localStorage.getItem("customerData"));
+  const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+
+  if (customerData && cartItems) {
+    const url = 'customer-save.php'; // Replace with your server endpoint URL
+
+    // Combine customerData and cartItems into a single object
+    const requestData = {
+      customerData: customerData,
+      cartItems: cartItems
+    };
+
+    $.ajax({
+      url: url,
+      type: 'POST',
+      dataType: 'json',
+      data: JSON.stringify(requestData),
+      contentType: 'application/json',
+      success: function (data) {
+        console.log(data); // Handle the response
+        // Optionally, you can perform any client-side operations after successful data submission
+      },
+      error: function (xhr, status, error) {
+        console.error('Error:', error);
+        // Handle any errors that occurred during the AJAX request
+      }
+    });
+  } else {
+    console.log('Customer data or cart items not found.');
   }
 }

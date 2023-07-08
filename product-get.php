@@ -1,7 +1,6 @@
 <?php 
-include_once 'template/header.php';
 require_once 'Database/database.php';
-require_once 'Controller/productController.php';
+require_once 'Controller/ProductController.php';
 
 use Controller\ProductController;
 

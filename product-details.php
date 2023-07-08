@@ -86,7 +86,7 @@ if (isset($_GET['id'])) {
                                     <div class="row row-cols-auto align-items-center mt-3">
                                         <div class="col">
                                             <label class="form-label">Quantity</label>
-                                            <select class="form-select form-select-sm">
+                                            <select class="form-select form-select-sm qty">
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>
@@ -96,7 +96,7 @@ if (isset($_GET['id'])) {
                                         </div>
                                         <div class="col">
                                             <label class="form-label">Size</label>
-                                            <select class="form-select form-select-sm">
+                                            <select class="form-select form-select-sm size">
                                                 <option>S</option>
                                                 <option>M</option>
                                                 <option>L</option>

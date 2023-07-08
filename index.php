@@ -2,11 +2,16 @@
 // get header
 include_once 'template/header.php';
 require_once 'Database/database.php';
-require_once 'Controller/productController.php';
+require_once 'Controller/ProductController.php';
+require_once 'Controller/ReviewController.php';
 
 use Controller\ProductController;
+use Controller\ReviewController;
 
 $products = ProductController::getAllProducts();
+$new_products = ProductController::getAllNewProducts();
+$reviews = ReviewController::getLatestReviews();
+
 ?>
 
 <section class="slider-section mb-4">
@@ -158,302 +163,33 @@ $products = ProductController::getAllProducts();
                 </div>
                 <div class="product-grid">
                     <div class="new-arrivals owl-carousel owl-theme position-relative">
-                        <div class="item">
-                            <div class="card">
-                                <div class="position-relative overflow-hidden">
-                                    <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
-                                        <a href="javascript:;"><i class='bx bx-cart-add'></i></a>
+                        <?php foreach ($new_products as $product) : ?>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="position-relative overflow-hidden">
+                                        <a href="product-details?id=<?= $product['pid']; ?>">
+                                            <?php if (!empty($product['pimage'])) : ?>
+                                                <img src="admin/productimages/<?php echo $product['pimage']; ?>" class="img-fluid" alt="Product Image">
+                                            <?php else : ?>
+                                                <img src="admin/noimage.png" class="img-fluid" alt="Product Image">
+                                            <?php endif; ?>
+                                        </a>
                                     </div>
-                                    <div class="quick-view position-absolute start-0 bottom-0 end-0">
-                                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">Quick View</a>
-                                    </div>
-                                    <a href="javascript:;">
-                                        <img src="assets/images/products/11.png" class="img-fluid" alt="...">
-                                    </a>
-                                </div>
-                                <div class="card-body px-0">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="">
-                                            <p class="mb-1 product-short-name">Topwear</p>
-                                            <h6 class="mb-0 fw-bold product-short-title">White Polo Shirt</h6>
+                                    <div class="card-body px-0">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="">
+                                                <p class="mb-1 product-short-name"><?= $product['pcategory']; ?></p>
+                                                <h6 class="mb-0 fw-bold product-short-title"><?= $product['pname']; ?></h6>
+                                            </div>
                                         </div>
-                                        <div class="icon-wishlist">
-                                            <a href="javascript:;"><i class="bx bx-heart"></i></a>
+                                        <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
+                                            <div class="h6 fw-bold">RM <?= $product['saleprice']; ?></div>
                                         </div>
-                                    </div>
-                                    <div class="cursor-pointer rating mt-2">
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                    </div>
-                                    <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
-                                        <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">$59.00</div>
-                                        <div class="h6 fw-bold">$48.00</div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="position-relative overflow-hidden">
-                                    <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
-                                        <a href="javascript:;"><i class='bx bx-cart-add'></i></a>
-                                    </div>
-                                    <div class="quick-view position-absolute start-0 bottom-0 end-0">
-                                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">Quick View</a>
-                                    </div>
-                                    <a href="javascript:;">
-                                        <img src="assets/images/products/12.png" class="img-fluid" alt="...">
-                                    </a>
-                                </div>
-                                <div class="card-body px-0">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="">
-                                            <p class="mb-1 product-short-name">Topwear</p>
-                                            <h6 class="mb-0 fw-bold product-short-title">White Polo Shirt</h6>
-                                        </div>
-                                        <div class="icon-wishlist">
-                                            <a href="javascript:;"><i class="bx bx-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="cursor-pointer rating mt-2">
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                    </div>
-                                    <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
-                                        <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">$59.00</div>
-                                        <div class="h6 fw-bold">$48.00</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="position-relative overflow-hidden">
-                                    <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
-                                        <a href="javascript:;"><i class='bx bx-cart-add'></i></a>
-                                    </div>
-                                    <div class="quick-view position-absolute start-0 bottom-0 end-0">
-                                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">Quick View</a>
-                                    </div>
-                                    <a href="javascript:;">
-                                        <img src="assets/images/products/13.png" class="img-fluid" alt="...">
-                                    </a>
-                                </div>
-                                <div class="card-body px-0">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="">
-                                            <p class="mb-1 product-short-name">Topwear</p>
-                                            <h6 class="mb-0 fw-bold product-short-title">White Polo Shirt</h6>
-                                        </div>
-                                        <div class="icon-wishlist">
-                                            <a href="javascript:;"><i class="bx bx-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="cursor-pointer rating mt-2">
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                    </div>
-                                    <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
-                                        <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">$59.00</div>
-                                        <div class="h6 fw-bold">$48.00</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="position-relative overflow-hidden">
-                                    <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
-                                        <a href="javascript:;"><i class='bx bx-cart-add'></i></a>
-                                    </div>
-                                    <div class="quick-view position-absolute start-0 bottom-0 end-0">
-                                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">Quick View</a>
-                                    </div>
-                                    <a href="javascript:;">
-                                        <img src="assets/images/products/14.png" class="img-fluid" alt="...">
-                                    </a>
-                                </div>
-                                <div class="card-body px-0">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="">
-                                            <p class="mb-1 product-short-name">Topwear</p>
-                                            <h6 class="mb-0 fw-bold product-short-title">White Polo Shirt</h6>
-                                        </div>
-                                        <div class="icon-wishlist">
-                                            <a href="javascript:;"><i class="bx bx-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="cursor-pointer rating mt-2">
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                    </div>
-                                    <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
-                                        <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">$59.00</div>
-                                        <div class="h6 fw-bold">$48.00</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="position-relative overflow-hidden">
-                                    <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
-                                        <a href="javascript:;"><i class='bx bx-cart-add'></i></a>
-                                    </div>
-                                    <div class="quick-view position-absolute start-0 bottom-0 end-0">
-                                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">Quick View</a>
-                                    </div>
-                                    <a href="javascript:;">
-                                        <img src="assets/images/products/15.png" class="img-fluid" alt="...">
-                                    </a>
-                                </div>
-                                <div class="card-body px-0">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="">
-                                            <p class="mb-1 product-short-name">Topwear</p>
-                                            <h6 class="mb-0 fw-bold product-short-title">White Polo Shirt</h6>
-                                        </div>
-                                        <div class="icon-wishlist">
-                                            <a href="javascript:;"><i class="bx bx-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="cursor-pointer rating mt-2">
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                    </div>
-                                    <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
-                                        <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">$59.00</div>
-                                        <div class="h6 fw-bold">$48.00</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="position-relative overflow-hidden">
-                                    <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
-                                        <a href="javascript:;"><i class='bx bx-cart-add'></i></a>
-                                    </div>
-                                    <div class="quick-view position-absolute start-0 bottom-0 end-0">
-                                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">Quick View</a>
-                                    </div>
-                                    <a href="javascript:;">
-                                        <img src="assets/images/products/16.png" class="img-fluid" alt="...">
-                                    </a>
-                                </div>
-                                <div class="card-body px-0">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="">
-                                            <p class="mb-1 product-short-name">Topwear</p>
-                                            <h6 class="mb-0 fw-bold product-short-title">White Polo Shirt</h6>
-                                        </div>
-                                        <div class="icon-wishlist">
-                                            <a href="javascript:;"><i class="bx bx-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="cursor-pointer rating mt-2">
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                    </div>
-                                    <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
-                                        <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">$59.00</div>
-                                        <div class="h6 fw-bold">$48.00</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="position-relative overflow-hidden">
-                                    <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
-                                        <a href="javascript:;"><i class='bx bx-cart-add'></i></a>
-                                    </div>
-                                    <div class="quick-view position-absolute start-0 bottom-0 end-0">
-                                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">Quick View</a>
-                                    </div>
-                                    <a href="javascript:;">
-                                        <img src="assets/images/products/17.png" class="img-fluid" alt="...">
-                                    </a>
-                                </div>
-                                <div class="card-body px-0">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="">
-                                            <p class="mb-1 product-short-name">Topwear</p>
-                                            <h6 class="mb-0 fw-bold product-short-title">White Polo Shirt</h6>
-                                        </div>
-                                        <div class="icon-wishlist">
-                                            <a href="javascript:;"><i class="bx bx-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="cursor-pointer rating mt-2">
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                    </div>
-                                    <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
-                                        <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">$59.00</div>
-                                        <div class="h6 fw-bold">$48.00</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="position-relative overflow-hidden">
-                                    <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
-                                        <a href="javascript:;"><i class='bx bx-cart-add'></i></a>
-                                    </div>
-                                    <div class="quick-view position-absolute start-0 bottom-0 end-0">
-                                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">Quick View</a>
-                                    </div>
-                                    <a href="javascript:;">
-                                        <img src="assets/images/products/18.png" class="img-fluid" alt="...">
-                                    </a>
-                                </div>
-                                <div class="card-body px-0">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="">
-                                            <p class="mb-1 product-short-name">Topwear</p>
-                                            <h6 class="mb-0 fw-bold product-short-title">White Polo Shirt</h6>
-                                        </div>
-                                        <div class="icon-wishlist">
-                                            <a href="javascript:;"><i class="bx bx-heart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="cursor-pointer rating mt-2">
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                    </div>
-                                    <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
-                                        <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">$59.00</div>
-                                        <div class="h6 fw-bold">$48.00</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
+
                     </div>
                 </div>
             </div>
@@ -464,144 +200,30 @@ $products = ProductController::getAllProducts();
             <div class="container">
                 <div class="separator pb-4">
                     <div class="line"></div>
-                    <h5 class="mb-0 fw-bold separator-title">Browse Catergory</h5>
+                    <h5 class="mb-0 fw-bold separator-title">Satisfied Customer</h5>
                     <div class="line"></div>
                 </div>
 
-                <div class="product-grid">
-                    <div class="browse-category owl-carousel owl-theme">
-                        <div class="item">
-                            <div class="card rounded-0">
-                                <div class="card-body p-0">
-                                    <img src="assets/images/categories/01.png" class="img-fluid" alt="...">
-                                </div>
-                                <div class="card-footer text-center bg-transparent border">
-                                    <h6 class="mb-0 text-uppercase fw-bold">Fashion</h6>
-                                    <p class="mb-0 font-12 text-uppercase">10 Products</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card rounded-0">
-                                <div class="card-body p-0">
-                                    <img src="assets/images/categories/02.png" class="img-fluid" alt="...">
-                                </div>
-                                <div class="card-footer text-center bg-transparent border">
-                                    <h6 class="mb-1 text-uppercase fw-bold">Watches</h6>
-                                    <p class="mb-0 font-12 text-uppercase">8 Products</p>
+                <div class="product-review">
+                    <h5 class="mb-4">Our Testimony</h5>
+                    <div class="review-list">
+                        <?php foreach ($reviews as $review) : ?>
+                            <div class="d-flex align-items-start">
+                                <div class="review-content ms-3">
+                                    <div class="rates cursor-pointer fs-6">
+                                        <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                            <i class="bx bxs-star text-<?php echo ($i <= $review['rating']) ? 'warning' : 'secondary'; ?>"></i>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <h6 class="mb-0"><?= $review['name']; ?></h6>
+                                        <p class="mb-0 ms-3"><?= date('j F Y', strtotime($review['timestamp'])); ?></p>
+                                    </div>
+                                    <p><?= $review['comment']; ?></p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="card rounded-0">
-                                <div class="card-body p-0">
-                                    <img src="assets/images/categories/03.png" class="img-fluid" alt="...">
-                                </div>
-                                <div class="card-footer text-center bg-transparent border">
-                                    <h6 class="mb-1 text-uppercase fw-bold">Shoes</h6>
-                                    <p class="mb-0 font-12 text-uppercase">14 Products</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card rounded-0">
-                                <div class="card-body p-0">
-                                    <img src="assets/images/categories/04.png" class="img-fluid" alt="...">
-                                </div>
-                                <div class="card-footer text-center bg-transparent border">
-                                    <h6 class="mb-1 text-uppercase fw-bold">Bags</h6>
-                                    <p class="mb-0 font-12 text-uppercase">6 Products</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card rounded-0">
-                                <div class="card-body p-0">
-                                    <img src="assets/images/categories/05.png" class="img-fluid" alt="...">
-                                </div>
-                                <div class="card-footer text-center bg-transparent border">
-                                    <h6 class="mb-1 text-uppercase fw-bold">Electronis</h6>
-                                    <p class="mb-0 font-12 text-uppercase">6 Products</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card rounded-0">
-                                <div class="card-body p-0">
-                                    <img src="assets/images/categories/06.png" class="img-fluid" alt="...">
-                                </div>
-                                <div class="card-footer text-center bg-transparent border">
-                                    <h6 class="mb-1 text-uppercase fw-bold">Headphones</h6>
-                                    <p class="mb-0 font-12 text-uppercase">5 Products</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card rounded-0">
-                                <div class="card-body p-0">
-                                    <img src="assets/images/categories/07.png" class="img-fluid" alt="...">
-                                </div>
-                                <div class="card-footer text-center bg-transparent border">
-                                    <h6 class="mb-1 text-uppercase fw-bold">Furniture</h6>
-                                    <p class="mb-0 font-12 text-uppercase">20 Products</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card rounded-0">
-                                <div class="card-body p-0">
-                                    <img src="assets/images/categories/08.png" class="img-fluid" alt="...">
-                                </div>
-                                <div class="card-footer text-center bg-transparent border">
-                                    <h6 class="mb-1 text-uppercase fw-bold">Jewelry</h6>
-                                    <p class="mb-0 font-12 text-uppercase">16 Products</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card rounded-0">
-                                <div class="card-body p-0">
-                                    <img src="assets/images/categories/09.png" class="img-fluid" alt="...">
-                                </div>
-                                <div class="card-footer text-center bg-transparent border">
-                                    <h6 class="mb-1 text-uppercase fw-bold">Sports</h6>
-                                    <p class="mb-0 font-12 text-uppercase">28 Products</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card rounded-0">
-                                <div class="card-body p-0">
-                                    <img src="assets/images/categories/10.png" class="img-fluid" alt="...">
-                                </div>
-                                <div class="card-footer text-center bg-transparent border">
-                                    <h6 class="mb-1 text-uppercase fw-bold">Vegetable</h6>
-                                    <p class="mb-0 font-12 text-uppercase">15 Products</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card rounded-0">
-                                <div class="card-body p-0">
-                                    <img src="assets/images/categories/11.png" class="img-fluid" alt="...">
-                                </div>
-                                <div class="card-footer text-center bg-transparent border">
-                                    <h6 class="mb-1 text-uppercase fw-bold">Medical</h6>
-                                    <p class="mb-0 font-12 text-uppercase">24 Products</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card rounded-0">
-                                <div class="card-body p-0">
-                                    <img src="assets/images/categories/12.png" class="img-fluid" alt="...">
-                                </div>
-                                <div class="card-footer text-center bg-transparent border">
-                                    <h6 class="mb-1 text-uppercase fw-bold">Sunglasses</h6>
-                                    <p class="mb-0 font-12 text-uppercase">18 Products</p>
-                                </div>
-                            </div>
-                        </div>
+                            <hr>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

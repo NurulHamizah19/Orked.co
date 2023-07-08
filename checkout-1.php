@@ -6,7 +6,7 @@
         <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
             <div class="container">
                 <div class="page-breadcrumb d-flex align-items-center">
-                    <h3 class="breadcrumb-title pe-3">Checkout</h3>
+                    <h3 class="breadcrumb-title pe-3">Customer Details</h3>
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
@@ -40,7 +40,7 @@
                                             <h2 class="h5 mb-0">Shipping Address</h2>
                                             <div class="my-3 border-bottom"></div>
                                             <div class="form-body">
-                                                <form class="row g-3">
+                                                <form class="row g-3 customer-details">
                                                     <div class="col-md-6">
                                                         <label class="form-label">First Name</label>
                                                         <input name="firstName" type="text" class="form-control rounded-0">
@@ -83,6 +83,10 @@
                                                         <input name="zipCode" type="text" class="form-control rounded-0">
                                                     </div>
                                                     <div class="col-md-6">
+                                                        <label class="form-label">City</label>
+                                                        <input name="city" type="text" class="form-control rounded-0">
+                                                    </div>
+                                                    <div class="col-md-6">
                                                         <label class="form-label">Address</label>
                                                         <textarea name="address" class="form-control rounded-0"></textarea>
                                                     </div>
@@ -116,14 +120,32 @@
 <?php include_once 'template/footer.php'; ?>
 
 <script>
+    $(document).ready(function() {
+        document.querySelector('.btn-proceed').addEventListener('click', function(e) {
+            e.preventDefault();
 
-$(document).ready(function() {
-    document.querySelector('.btn-proceed').addEventListener('click', function(e) {
-        e.preventDefault();
-        saveCustomerData();
-        window.location.href = "checkout-2.html";
+            if (isFormValid()) {
+                saveCustomerDataForm();
+                window.location.href = "checkout-2.php";
+            } else {
+                Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                    }
+                }).fire({
+                    icon: 'warning',
+                    title: 'Oops..',
+                    text: 'Please fill in all the fields!'
+                });
+            }
+        });
+
+        populateForm();
     });
-    populateForm();
-});
-
 </script>

@@ -18,6 +18,18 @@ class ProductController
             exit;
         }
     }
+    public static function getAllNewProducts()
+    {
+        try {
+            $stmt = Database::getInstance()->query("SELECT * FROM tbl_product ORDER BY timestamp DESC");
+            $products = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+            return $products;
+        } catch (\PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            exit;
+        }
+    }
     public static function getProductById($productId)
     {
         try {
