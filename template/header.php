@@ -137,65 +137,65 @@
         <!--end top header wrapper-->
 
         <script>
-            // Retrieve cartItems from localStorage
             let minicartItems = JSON.parse(localStorage.getItem('cartItems'));
 
-            // Get the container element where the cart items will be populated
-            let miniContainer = document.getElementById('minicartItemsContainer');
-            let totalCart = 0;
-            // Iterate over each cart item and generate the HTML dynamically
-            minicartItems.forEach(function(cartItem) {
+            if (minicartItems) {
+                let miniContainer = document.getElementById('minicartItemsContainer');
+                let totalCart = 0;
 
-                let itemPrice = parseFloat(cartItem.price);
-                let itemQuantity = parseInt(cartItem.quantity);
-                let itemTotalPrice = itemPrice * itemQuantity;
+                minicartItems.forEach(function(cartItem) {
 
-                totalCart += itemTotalPrice;
+                    let itemPrice = parseFloat(cartItem.price);
+                    let itemQuantity = parseInt(cartItem.quantity);
+                    let itemTotalPrice = itemPrice * itemQuantity;
 
-                // Create the elements for each cart item
-                let itemMiniContainer = document.createElement('a');
-                itemMiniContainer.classList.add('dropdown-item');
-                itemMiniContainer.href = 'product-details?id=' + cartItem.productId;
+                    totalCart += itemTotalPrice;
 
-                let itemMiniContent = document.createElement('div');
-                itemMiniContent.classList.add('d-flex', 'align-items-center');
+                    // Create the elements for each cart item
+                    let itemMiniContainer = document.createElement('a');
+                    itemMiniContainer.classList.add('dropdown-item');
+                    itemMiniContainer.href = 'product-details?id=' + cartItem.productId;
 
-                let itemMiniDetails = document.createElement('div');
-                itemMiniDetails.classList.add('flex-grow-1');
+                    let itemMiniContent = document.createElement('div');
+                    itemMiniContent.classList.add('d-flex', 'align-items-center');
 
-                let itemMiniTitle = document.createElement('h6');
-                itemMiniTitle.classList.add('cart-product-title');
-                itemMiniTitle.textContent = cartItem.productName;
+                    let itemMiniDetails = document.createElement('div');
+                    itemMiniDetails.classList.add('flex-grow-1');
 
-                let itemMiniPrice = document.createElement('p');
-                itemMiniPrice.classList.add('cart-product-price');
-                itemMiniPrice.textContent = cartItem.quantity + ' X RM' + cartItem.price;
+                    let itemMiniTitle = document.createElement('h6');
+                    itemMiniTitle.classList.add('cart-product-title');
+                    itemMiniTitle.textContent = cartItem.productName;
 
-                let itemMiniCancel = document.createElement('div');
-                itemMiniCancel.classList.add('cart-product-cancel', 'position-absolute');
-                itemMiniCancel.innerHTML = '<i class="bx bx-x"></i>';
+                    let itemMiniPrice = document.createElement('p');
+                    itemMiniPrice.classList.add('cart-product-price');
+                    itemMiniPrice.textContent = cartItem.quantity + ' X RM' + cartItem.price;
 
-                let itemMiniImage = document.createElement('div');
-                itemMiniImage.classList.add('cart-product');
+                    let itemMiniCancel = document.createElement('div');
+                    itemMiniCancel.classList.add('cart-product-cancel', 'position-absolute');
+                    itemMiniCancel.innerHTML = '<i class="bx bx-x"></i>';
 
-                let image = document.createElement('img');
-                image.src = 'admin/productImages/' + cartItem.productImage;
+                    let itemMiniImage = document.createElement('div');
+                    itemMiniImage.classList.add('cart-product');
 
-                // Assemble the elements
-                itemMiniDetails.appendChild(itemMiniTitle);
-                itemMiniDetails.appendChild(itemMiniPrice);
-                itemMiniContent.appendChild(itemMiniDetails);
-                itemMiniContent.appendChild(itemMiniCancel);
-                itemMiniImage.appendChild(image);
-                itemMiniContent.appendChild(itemMiniImage);
-                itemMiniContainer.appendChild(itemMiniContent);
+                    let image = document.createElement('img');
+                    image.src = 'admin/productImages/' + cartItem.productImage;
 
-                // Append the cart item to the container
-                miniContainer.appendChild(itemMiniContainer);
-            });
+                    // Assemble the elements
+                    itemMiniDetails.appendChild(itemMiniTitle);
+                    itemMiniDetails.appendChild(itemMiniPrice);
+                    itemMiniContent.appendChild(itemMiniDetails);
+                    itemMiniContent.appendChild(itemMiniCancel);
+                    itemMiniImage.appendChild(image);
+                    itemMiniContent.appendChild(itemMiniImage);
+                    itemMiniContainer.appendChild(itemMiniContent);
 
-            let totalCartElement = document.querySelector('.totalCart');
-            totalCartElement.textContent = 'RM ' + totalCart.toFixed(2);
-            let totalItemsElement = document.querySelector('.totalItems');
-            totalItemsElement.textContent = minicartItems.length.toString();
+                    // Append the cart item to the container
+                    miniContainer.appendChild(itemMiniContainer);
+                });
+
+                let totalCartElement = document.querySelector('.totalCart');
+                totalCartElement.textContent = 'RM ' + totalCart.toFixed(2);
+                let totalItemsElement = document.querySelector('.totalItems');
+                totalItemsElement.textContent = minicartItems.length.toString();
+            }
         </script>
