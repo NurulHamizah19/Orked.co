@@ -51,7 +51,7 @@
                         </div>
 
                         <!-- <div class="col-12 col-xl order-4 order-xl-0"> -->
-                        <form class="col-12 col-xl order-4 order-xl-0" method="GET" action="shop">
+                        <form class="col-12 col-xl order-4 order-xl-0" method="GET" action="shop.php">
                             <div class="input-group flex-nowrap pb-3 pb-xl-0">
                                 <input type="hidden" name="category" value="All">
                                 <input type="text" name="search" class="form-control w-100 border-dark border border-3" placeholder="Search for Products">
