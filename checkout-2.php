@@ -63,12 +63,12 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="d-grid">
-                                                    <a href="checkout-1" class="btn btn-light btn-ecomm"><i class="bx bx-chevron-left"></i>Back to Details</a>
+                                                    <a href="checkout-1.php" class="btn btn-light btn-ecomm"><i class="bx bx-chevron-left"></i>Back to Details</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="d-grid">
-                                                    <a href="checkout-3" class="btn btn-dark btn-ecomm">Proceed to Payment<i class="bx bx-chevron-right"></i></a>
+                                                    <a href="checkout-3.php" class="btn btn-dark btn-ecomm">Proceed to Payment<i class="bx bx-chevron-right"></i></a>
                                                 </div>
                                             </div>
                                         </div>

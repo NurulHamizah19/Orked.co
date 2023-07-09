@@ -1,3 +1,7 @@
+<?php session_start(); 
+
+// var_dump($_SESSION);
+?>
 <!doctype html>
 <html lang="en">
 
@@ -60,6 +64,8 @@
                             <div class="top-cart-icons">
                                 <nav class="navbar navbar-expand">
                                     <ul class="navbar-nav">
+                                        <li class="nav-item"><a href="<?php echo isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] ? 'dashboard.php' : 'sign-in.php'; ?>" class="nav-link cart-link"><i class="bx bx-user"></i></a>
+                                        </li>
                                         <li class="nav-item dropdown dropdown-large">
                                             <a href="#" class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link" data-bs-toggle="dropdown"> <span class="alert-count totalItems">0</span>
                                                 <i class='bx bx-shopping-bag'></i>
@@ -94,7 +100,7 @@
                                                         <h5 class="mb-0 ms-auto totalCart">RM0</h5>
                                                     </div>
                                                 </a>
-                                                <div class="d-grid p-3 border-top"> <a href="checkout-1" class="btn btn-dark btn-ecomm">CHECKOUT</a>
+                                                <div class="d-grid p-3 border-top"> <a href="checkout-1.php" class="btn btn-dark btn-ecomm">CHECKOUT</a>
                                                 </div>
                                             </div>
                                         </li>
@@ -117,15 +123,15 @@
                         <div class="offcanvas-body primary-menu">
                             <ul class="navbar-nav justify-content-start flex-grow-1 gap-1">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index">Home</a>
+                                    <a class="nav-link" href="index.php">Home</a>
                                 </li>
-                                <li class="nav-item"> <a class="nav-link" href="shop">Shop</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="about-us">About</a>
+                                <li class="nav-item"> <a class="nav-link" href="shop.php">Shop</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="feedback">Feedback</a>
+                                    <a class="nav-link" href="about-us.php">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="feedback.php">Feedback</a>
                                 </li>
 
                             </ul>

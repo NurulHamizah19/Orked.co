@@ -58,6 +58,74 @@ $(document).ready(function () {
       }
     });
   });
+
+  $('#emailRego').on('blur', function () {
+    var email = $(this).val();
+
+    $.ajax({
+      url: 'authenticate.php',
+      type: 'POST',
+      data: {
+        email: email,
+        action: 'checkUserExists'
+      },
+      success: function (response) {
+        if (response === 'exists') {
+          $('#email-validation-result').text('- User with this email already exists.').removeClass('text-success').addClass('text-danger');
+          $('#emailValid').val(0);
+        } else {
+          $('#email-validation-result').text('- Email is available.').removeClass('text-danger').addClass('text-success');
+          $('#emailValid').val(1);
+          $('#password').val('');
+        }
+      }
+    });
+  });
+
+  $('.rego').on('input', function () {
+    var firstName = $('#fname').val();
+    var lastName = $('#lname').val();
+    var email = $('#emailRego').val();
+    var password = $('#password').val();
+    var emailValid = $('#emailValid').val() === '1';
+    var authType = $('#flexSwitchCheckChecked').is(':checked');
+
+    var isValid = firstName !== '' && lastName !== '' && email !== '' && password !== '' && authType && emailValid;
+
+    var submitButton = $('.submit');
+    if (isValid) {
+      submitButton.removeClass('disabled');
+    } else {
+      submitButton.addClass('disabled');
+    }
+  });
+
+  $('.updateDetails').on('input', function () {
+    var firstName = $('#name').val();
+    var email = $('#email').val();
+    var password = $('#password').val();
+
+    var isValid = firstName !== '' && email !== '' && password !== '';
+
+    var submitButton = $('.submit');
+    if (isValid) {
+      submitButton.removeClass('disabled');
+    } else {
+      submitButton.addClass('disabled');
+    }
+  });
+
+  if (window.location.search.includes('?login=failed')) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Failed Login',
+      text: 'Your login attempt was unsuccessful.',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'OK'
+    });
+  }
+
+
 });
 
 function shareOnTwitter() {
@@ -177,6 +245,7 @@ function saveCustomerDataForm() {
   var city = document.querySelector('input[name="city"]').value;
   var zipCode = document.querySelector('input[name="zipCode"]').value;
   var address = document.querySelector('textarea[name="address"]').value;
+  var userId = document.querySelector('input[name="userId"]').value;
 
   var customer = {
     name: firstName + ' ' + lastName,
@@ -185,7 +254,8 @@ function saveCustomerDataForm() {
     city: city,
     state: state,
     phone: phoneNumber,
-    email: email
+    email: email,
+    userId: userId
   };
 
   localStorage.setItem('customerData', JSON.stringify(customer));
@@ -230,9 +300,8 @@ function saveCustomerData() {
   const cartItems = JSON.parse(localStorage.getItem("cartItems"));
 
   if (customerData && cartItems) {
-    const url = 'customer-save.php'; // Replace with your server endpoint URL
+    const url = 'customer-save.php';
 
-    // Combine customerData and cartItems into a single object
     const requestData = {
       customerData: customerData,
       cartItems: cartItems
@@ -245,12 +314,10 @@ function saveCustomerData() {
       data: JSON.stringify(requestData),
       contentType: 'application/json',
       success: function (data) {
-        console.log(data); // Handle the response
-        // Optionally, you can perform any client-side operations after successful data submission
+        console.log(data);
       },
       error: function (xhr, status, error) {
         console.error('Error:', error);
-        // Handle any errors that occurred during the AJAX request
       }
     });
   } else {

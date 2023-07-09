@@ -15,11 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = CheckoutController::saveCustomerData($customerData, $cartItems);
 
     if ($result) {
-        // Data saved successfully
         echo $result;
         echo 'success';
     } else {
-        // Error occurred while saving data
         echo $result;
         echo 'error';
     }

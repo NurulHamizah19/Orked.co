@@ -9,18 +9,42 @@ class CheckoutController
     public static function saveCustomerData($customerData, $cartItems)
     {
         try {
-            $stmt = Database::getInstance()->prepare("
-                INSERT INTO tbl_client (name, address, postcode, city, state, phone, email)
-                VALUES (:name, :address, :postcode, :city, :state, :phone, :email)
-            ");
-            $stmt->bindValue(':name', $customerData['name']);
-            $stmt->bindValue(':address', $customerData['address']);
-            $stmt->bindValue(':postcode', $customerData['postcode']);
-            $stmt->bindValue(':city', $customerData['city']);
-            $stmt->bindValue(':state', $customerData['state']);
-            $stmt->bindValue(':phone', $customerData['phone']);
-            $stmt->bindValue(':email', $customerData['email']);
-            $stmt->execute();
+            if ($customerData['userId']) {
+                $stmt = Database::getInstance()->prepare("
+                    UPDATE tbl_client 
+                    SET name = :name, 
+                        address = :address, 
+                        postcode = :postcode, 
+                        city = :city, 
+                        state = :state, 
+                        phone = :phone, 
+                        email = :email 
+                    WHERE id = :userId
+                ");
+                $stmt->bindValue(':name', $customerData['name']);
+                $stmt->bindValue(':address', $customerData['address']);
+                $stmt->bindValue(':postcode', $customerData['postcode']);
+                $stmt->bindValue(':city', $customerData['city']);
+                $stmt->bindValue(':state', $customerData['state']);
+                $stmt->bindValue(':phone', $customerData['phone']);
+                $stmt->bindValue(':email', $customerData['email']);
+                $stmt->bindValue(':userId', $customerData['userId']);
+                $stmt->execute();
+            } else {
+                $stmt = Database::getInstance()->prepare("
+                    INSERT INTO tbl_client (name, address, postcode, city, state, phone, email)
+                    VALUES (:name, :address, :postcode, :city, :state, :phone, :email)
+                ");
+                $stmt->bindValue(':name', $customerData['name']);
+                $stmt->bindValue(':address', $customerData['address']);
+                $stmt->bindValue(':postcode', $customerData['postcode']);
+                $stmt->bindValue(':city', $customerData['city']);
+                $stmt->bindValue(':state', $customerData['state']);
+                $stmt->bindValue(':phone', $customerData['phone']);
+                $stmt->bindValue(':email', $customerData['email']);
+                $stmt->execute();
+            }
+
 
             $customerId = Database::getInstance()->lastInsertId();
 
@@ -40,7 +64,7 @@ class CheckoutController
                 INSERT INTO tbl_invoice (customer_name, name, order_date, subtotal, total, paid, due, payment_type, shipment_type)
                 VALUES (:customerName, :name, :orderDate, :subtotal, :total, :paid, :due, :paymentType, :shipmentType)
             ");
-            $stmt->bindValue(':customerName', $customerId);
+            $stmt->bindValue(':customerName', (!empty($customerData['userId'])) ? $customerData['userId'] : $customerId);
             $stmt->bindValue(':name', $customerData['name']);
             $stmt->bindValue(':orderDate', $orderDate);
             $stmt->bindValue(':subtotal', $subtotal);

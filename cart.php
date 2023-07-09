@@ -35,7 +35,7 @@ include_once 'template/header.php';
                                 </div>
                                 <!-- Items -->
                                 <div class="d-lg-flex align-items-center gap-2">
-                                    <a href="shop" class="btn btn-dark btn-ecomm"><i class="bx bx-shopping-bag"></i> Continue Shopping</a>
+                                    <a href="shop.php" class="btn btn-dark btn-ecomm"><i class="bx bx-shopping-bag"></i> Continue Shopping</a>
                                     <a href="javascript:;" class="btn btn-light btn-ecomm ms-auto" onclick="clearCart()"><i class="bx bx-x-circle"></i> Clear Cart</a>
                                     <a href="javascript:;" class="btn btn-white btn-ecomm" onclick="updateCart()"><i class="bx bx-refresh"></i> Update Cart</a>
                                 </div>
@@ -51,7 +51,7 @@ include_once 'template/header.php';
                                         <h5 class="mb-0">Order Total: <span class="float-end" id="orderTotalAmount"></span></h5>
                                         <div class="my-4"></div>
                                         <div class="d-grid">
-                                            <a href="checkout-1" class="btn btn-dark btn-ecomm">Proceed to Checkout</a>
+                                            <a href="checkout-1.php" class="btn btn-dark btn-ecomm">Proceed to Checkout</a>
                                         </div>
                                     </div>
                                 </div>

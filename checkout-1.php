@@ -1,4 +1,6 @@
-<?php include_once 'template/header.php'; ?>
+<?php 
+include_once 'template/header.php'; 
+?>
 
 <div class="page-wrapper">
     <div class="page-content">
@@ -41,25 +43,26 @@
                                             <div class="my-3 border-bottom"></div>
                                             <div class="form-body">
                                                 <form class="row g-3 customer-details">
+                                                    <input type="hidden" name="userId" value="<?= isset($_SESSION['userId']) ? $_SESSION['userId'] : ''; ?>">
                                                     <div class="col-md-6">
                                                         <label class="form-label">First Name</label>
-                                                        <input name="firstName" type="text" class="form-control rounded-0">
+                                                        <input name="firstName" id="firstName" type="text" class="form-control rounded-0">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Last Name</label>
-                                                        <input name="lastName" type="text" class="form-control rounded-0">
+                                                        <input name="lastName" id="lastName" type="text" class="form-control rounded-0">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">E-mail</label>
-                                                        <input name="email" type="text" class="form-control rounded-0">
+                                                        <input name="email" id="email" type="text" class="form-control rounded-0">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Phone Number</label>
-                                                        <input name="phoneNumber" type="text" class="form-control rounded-0">
+                                                        <input name="phoneNumber" id="phoneNumber" type="text" class="form-control rounded-0">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">State/Province</label>
-                                                        <select name="state" class="form-select rounded-0">
+                                                        <select name="state" id="state" class="form-select rounded-0">
                                                             <option value="Johor">Johor</option>
                                                             <option value="Kedah">Kedah</option>
                                                             <option value="Kelantan">Kelantan</option>
@@ -79,16 +82,16 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label">Zip/Postal Code</label>
-                                                        <input name="zipCode" type="text" class="form-control rounded-0">
+                                                        <label class="form-label">Postal Code</label>
+                                                        <input name="zipCode" id="postcode" type="text" class="form-control rounded-0">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">City</label>
-                                                        <input name="city" type="text" class="form-control rounded-0">
+                                                        <input name="city" id="city" type="text" class="form-control rounded-0">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="form-label">Address</label>
-                                                        <textarea name="address" class="form-control rounded-0"></textarea>
+                                                        <textarea name="address" id="address" class="form-control rounded-0"></textarea>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="d-grid"> <a href="cart" class="btn btn-light btn-ecomm"><i class="bx bx-chevron-left"></i>Back to Cart</a>
