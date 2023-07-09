@@ -5,14 +5,10 @@ class Database {
     private static $instance = null;
 
     private function __construct() {
-        $dbHost = 'localhost';
-        $dbName = 'orked-db';
-        $dbUser = 'root';
-        $dbPass = '';
-
-        $host = $dbHost;
-        $db_name = $dbName;
-        $username = $dbUser;
+        
+        $host = 'localhost';
+        $db_name = 'orked-db';
+        $username = 'root';
         $password = $dbPass;
 
         try {
