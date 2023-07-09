@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include_once 'template/header.php';
 require_once 'Database/database.php';
@@ -7,6 +7,23 @@ require_once 'Controller/UserController.php';
 use Controller\UserController;
 
 $orders = UserController::getOrders($_SESSION['userId']);
+
+function getStatusBadgeClass($status)
+{
+    switch ($status) {
+        case 'Completed':
+            return 'bg-success';
+        case 'Processing':
+            return 'bg-warning';
+        case 'On Hold':
+            return 'bg-info';
+        case 'Failed':
+            return 'bg-danger';
+        default:
+            return '';
+    }
+}
+
 
 // var_dump($orders);
 ?>
@@ -61,19 +78,26 @@ $orders = UserController::getOrders($_SESSION['userId']);
                                                     <tr>
                                                         <th>Order</th>
                                                         <th>Date</th>
+                                                        <th>Status</th>
                                                         <th>Total</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php foreach($orders as $order): ?>
-                                                    <tr>
-                                                        <td>#<?= $order['invoice_id']; ?></td>
-                                                        <td><?= $order['order_date']; ?></td>
-                                                        <td>RM <?= number_format($order['total'],2); ?></td>
-                                                    </tr>
+                                                    <?php foreach ($orders as $order) : ?>
+                                                        <tr>
+                                                            <td>#<?= $order['invoice_id']; ?></td>
+                                                            <td><?= $order['order_date']; ?></td>
+                                                            <td>
+                                                                <div class="badge rounded-pill <?= getStatusBadgeClass($order['status']); ?> w-100">
+                                                                    <?= $order['status']; ?>
+                                                                </div>
+                                                            </td>
+                                                            <td>RM <?= number_format($order['total'], 2); ?></td>
+                                                        </tr>
                                                     <?php endforeach; ?>
                                                 </tbody>
                                             </table>
+
                                         </div>
                                     </div>
                                 </div>
