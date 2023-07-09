@@ -5,11 +5,11 @@ class Database {
     private static $instance = null;
 
     private function __construct() {
-        
+
         $host = 'localhost';
         $db_name = 'orked-db';
         $username = 'root';
-        $password = $dbPass;
+        $password = '';
 
         try {
             self::$instance = new \PDO("mysql:host=$host;dbname=$db_name;charset=utf8", $username, $password);
