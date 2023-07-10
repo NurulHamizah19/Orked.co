@@ -27,10 +27,6 @@ $select = $pdo->prepare("SELECT * FROM tbl_invoice WHERE invoice_id=$id");
 $select->execute();
 $row = $select->fetch(PDO::FETCH_OBJ);
 $cid = $row->customer_name;
-$ep_code = $row->ep_orderid;
-$awb = $row->awb;
-$awb_link = $row->awb_link;
-$tracking_url = $row->tracking_url;
 $delivery_method = $row->shipment_type;
 $ostatus = $row->status;
 
@@ -162,13 +158,7 @@ if (isset($_POST['btnstatus'])) {
           $select->execute();
 
           while ($row = $select->fetch(PDO::FETCH_OBJ)) {
-            echo '
-                    
-                    <ul class="list-group">
-                    
-                      ' . client_data($pdo, $cid) . '
-                      <li class="list-group-item">Commissions <span class="label label-success pull-right" style="font-size:13px">RM ' . number_format($row->comms, 2) . '</span></li>
-                      <li class="list-group-item">Seller/Agent ID <span class="label label-success pull-right" style="font-size:13px">' . $row->agentid . '</span></li>
+            echo '<ul class="list-group"> ' . client_data($pdo, $cid) . '
                     ';
           } ?>
           <?php
@@ -179,22 +169,7 @@ if (isset($_POST['btnstatus'])) {
             echo '<li class="list-group-item">Delivery Method <span class="label label-info pull-right" style="font-size:13px">In-store</span></li></ul>';
           }
           if ($delivery_method == 2) {
-            echo '<li class="list-group-item">Delivery Method <span class="label label-info pull-right" style="font-size:13px">EasyParcel (Postage)</span></li></ul>';
-          }
-
-
-
-          ?>
-          <?php
-          if ($delivery_method == 2) {
-            echo ' 
-                    <ul class="list-group">
-                    <center><p class="list-group-item list-group-item-success"><b>Parcel Info</b></p></center>
-                    <li class="list-group-item">EasyParcel Order ID <span class="badge" style="font-size:13px">' . $ep_code . '</span></li>
-                    <li class="list-group-item">AWB Number <span class="label label-primary pull-right" style="font-size:13px">' . $awb . '</span></li>
-                    <li class="list-group-item">Print AWB <a href="' . $awb_link . '" target="_blank"><span class="label label-danger pull-right" style="font-size:13px">Click Here</span></a></li>
-                    <li class="list-group-item">Tracking URL <a href="' . $tracking_url . '" target="_blank"><span class="label label-danger pull-right" style="font-size:13px">Click Here</span></a></li>
-                    </ul>';
+            echo '<li class="list-group-item">Delivery Method <span class="label label-info pull-right" style="font-size:13px">(Postage)</span></li></ul>';
           }
           ?>
         </div>

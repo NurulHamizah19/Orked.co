@@ -167,7 +167,7 @@ $reviews = ReviewController::getLatestReviews();
                             <div class="item">
                                 <div class="card">
                                     <div class="position-relative overflow-hidden">
-                                        <a href="product-details?id=<?= $product['pid']; ?>">
+                                        <a href="product-details.php?id=<?= $product['pid']; ?>">
                                             <?php if (!empty($product['pimage'])) : ?>
                                                 <img src="admin/productimages/<?php echo $product['pimage']; ?>" class="img-fluid" alt="Product Image">
                                             <?php else : ?>

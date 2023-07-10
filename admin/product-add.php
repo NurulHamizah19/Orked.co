@@ -45,12 +45,12 @@ if (isset($_POST['btnaddproduct'])) {
     echo $f_newfile = uniqid() . '.' . $f_extension; // do not overwrite file
     $store = "productimages/" . $f_newfile;
     if ($f_extension == 'jpg' || $f_extension == 'png' || $f_extension == 'gif' || $f_extension == 'jpeg') {
-      if ($f_size >= 5000000) {
+      if ($f_size >= 10000000) {
         $error = '<script type="text/javascript">
                 jQuery(function validation(){
                     swal({
                       title: "Error!",
-                      text: "File should be less than 1MB",
+                      text: "File should be less than 10MB",
                       icon: "warning",
                       button: "Ok",
                     });

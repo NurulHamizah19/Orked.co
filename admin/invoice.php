@@ -6,21 +6,18 @@ require('fpdf/fpdf.php');
 include_once'connectdb.php';
 session_start();
 include_once 'config.php';
-if($_SESSION['useremail']==""){
-    header('location:index.php');
-}
 
 $id = $_GET['id'];
 $select = $pdo->prepare("SELECT *, DATE_FORMAT(order_date, '%d/%m/%Y') AS order_date FROM tbl_invoice WHERE invoice_id=$id");
 $select->execute();
 $row = $select->fetch(PDO::FETCH_OBJ);
+$cid = $row->customer_name;
 
 
 $detail = $pdo->prepare("SELECT * FROM config WHERE id=1");
 $detail->execute();
 $data = $detail->fetch(PDO::FETCH_OBJ);
 
-$cid = $row->customer_name;
 
 $cust = $pdo->prepare("SELECT * FROM tbl_client WHERE id=$cid");
 $cust->execute();

@@ -534,10 +534,10 @@ include 'connectdb.php';
                   <input type="radio" name="ship" id="store" onclick="Checkradiobutton()" checked value="0" > In-store 
                 </label>
                 <label>
-                  <input type="radio" name="ship" id="lala" onclick="Checkradiobutton()" value="1"> Lalamove (Runner Service)
+                  <input type="radio" name="ship" id="lala" onclick="Checkradiobutton()" value="1"> (Runner Service)
                 </label>
                 <label>
-                  <input type="radio" name="ship" id="ep" onclick="Checkradiobutton()" value="2"> EasyParcel (Postage)
+                  <input type="radio" name="ship" id="ep" onclick="Checkradiobutton()" value="2"> (Postage)
                 </label>
 
               </div>
