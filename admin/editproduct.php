@@ -24,7 +24,6 @@ $stock_db = $row['pstock'];
 $description_db = $row['pdescription'];
 $productimage_db = $row['pimage'];
 $barcode_db = $row['barcode'];
-$sid = $supplier_db;
 
 if (isset($_POST['btnupdate'])) {
 
@@ -243,18 +242,6 @@ $row = $select->fetch(PDO::FETCH_ASSOC);
               <label>Stock</label>
               <input type="number" min="1" step="1" class="form-control" name="txtstock" value="<?php echo $stock_db; ?>" placeholder="Stock" required>
             </div>
-            <!-- <div class="form-group">
-                  <label>Supplier Name</label>
-                  
-                  <div class="input-group">
-                  <div class="input-group-addon">
-                      <i class="fa fa-user"></i>
-                  </div>
-                  <select class="form-control postName" id="clientid" name="txtsupplier" required><?php echo supplier_data($pdo, $sid); ?></select>
-                  <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAddCustomer" data-dismiss="modal">Add Supplier</button></span>
-                  </div>
-                  
-                </div> -->
             <hr>
             <div class="form-group">
               <div class="input-group">
@@ -263,15 +250,6 @@ $row = $select->fetch(PDO::FETCH_ASSOC);
                 </div>
                 <input type="text" class="form-control" name="txtbarcode" value="<?php echo $barcode_db; ?>" id="custominput" placeholder="Barcode" required>
               </div>
-            </div>
-            <div class="form-group">
-              <label>
-                <input type="radio" name="barcode_type" id="self" onclick="Checkradiobutton()" checked value="supplier"> Supplier barcode
-              </label>
-              <label>
-                <input type="radio" name="barcode_type" id="supplier" onclick="Checkradiobutton()" value="system"> System barcode
-              </label>
-
             </div>
             <div class="from-group">
               <label>Description</label>
@@ -312,99 +290,11 @@ $row = $select->fetch(PDO::FETCH_ASSOC);
 </script>
 <!-- /.content-wrapper -->
 <script>
-  $(document).ready(function() {
-    // Variable to hold request
-    var request;
-
-    // Bind to the submit event of our form
-    $("#formcustomer").submit(function(event) {
-
-      // Prevent default posting of form - put here to work in case of errors
-      event.preventDefault();
-
-      // Abort any pending request
-      if (request) {
-        request.abort();
-      }
-      // setup some local variables
-      var $form = $(this);
-
-      // Let's select and cache all the fields
-      var $inputs = $form.find("input, select, button, textarea");
-
-      // Serialize the data in the form
-      var serializedData = $form.serialize();
-      console.log(serializedData);
-      $inputs.prop("disabled", true);
-
-      request = $.ajax({
-        url: "process_sdata.php",
-        type: "post",
-        data: serializedData
-      });
-
-      // Callback handler that will be called on success
-      request.done(function(response, textStatus, jqXHR) {
-        // Log a message to the console
-        console.log("Hooray, it worked!");
-        swal({
-          title: "Success!",
-          text: "Supplier data recorded",
-          icon: "success",
-          button: "Ok",
-        });
-        $('#modalAddCustomer').modal('toggle');
-      });
-
-      // Callback handler that will be called on failure
-      request.fail(function(jqXHR, textStatus, errorThrown) {
-        // Log the error to the console
-        console.error(
-          "The following error occurred: " +
-          textStatus, errorThrown
-        );
-      });
-
-      // Callback handler that will be called regardless
-      // if the request failed or succeeded
-      request.always(function() {
-        // Reenable the inputs
-        $inputs.prop("disabled", false);
-      });
-
-    });
-  });
-</script>
-<script>
   //Red color scheme for iCheck
   $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
     checkboxClass: 'icheckbox_minimal-red',
     radioClass: 'iradio_minimal-red'
   })
-
-  $(document).ready(function() {
-    $('#clientid').select2({
-      placeholder: 'Select customer',
-      ajax: {
-        url: "supplier_get.php",
-        type: "post",
-        dataType: 'json',
-        delay: 250,
-        data: function(params) {
-          return {
-            searchTerm: params.term // search term
-          };
-        },
-        processResults: function(response) {
-          return {
-            results: response
-          };
-        },
-        cache: true
-      }
-    });
-
-  });
 </script>
 <script>
   function imgError(image) {
@@ -412,14 +302,6 @@ $row = $select->fetch(PDO::FETCH_ASSOC);
     image.src = "noimage.png";
     return true;
   }
-</script>
-<script>
-  $('#datepicker1').datepicker({
-    autoclose: true
-  })
-  $('#datepicker2').datepicker({
-    autoclose: true
-  })
 </script>
 <?php
 include_once 'footer.php'
