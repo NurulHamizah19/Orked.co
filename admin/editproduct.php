@@ -134,15 +134,11 @@ if (isset($_POST['btnupdate'])) {
     $update->bindParam(':pcategory', $category_txt);
     $update->bindParam(':pprice', $purchaseprice_txt);
     $update->bindParam(':saleprice', $saleprice_txt);
-    $update->bindParam(':stkprice', $stkprice_txt);
-    $update->bindParam(':wholeprice', $wholeprice_txt);
     $update->bindParam(':profit', $profit_txt);
     $update->bindParam(':pstock', $stock_txt);
     $update->bindParam(':pdescription', $description_txt);
     $update->bindParam(':pimage', $f_newfile);
     $update->bindParam(':barcode', $barcode_txt);
-    $update->bindParam(':supplier', $supplier_db);
-    $update->bindParam(':expdate', $expdate_txt);
     $update->bindParam(':pimage', $productimage_db);
 
     if ($update->execute()) {
