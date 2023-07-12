@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Database/Database.php';
+require_once 'Database/database.php';
 require_once 'Controller/UserController.php';
 
 use Controller\UserController;

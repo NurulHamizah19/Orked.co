@@ -41,7 +41,7 @@ include_once 'template/header.php';
 					<div class="p-3 bg-light">
 						<div class="address mb-3">
 							<h6 class="mb-0 text-uppercase">Address</h6>
-							<p class="mb-0 font-12">25 Tingkat Bawah, Jalan Perda Utara, Bandar Perda, 14000 Bukit Mertajam, Penang</p>
+							<p class="mb-0 font-12">No 40, Lorong Hj Juraimi Batu 6 1/2, Meru, 41050 Klang, Selangor</p>
 						</div>
 						<div class="phone mb-3">
 							<h6 class="mb-0 text-uppercase">Tiktok</h6>

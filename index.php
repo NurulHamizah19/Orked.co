@@ -24,11 +24,11 @@ $reviews = ReviewController::getLatestReviews();
                         <h3 class="h3 fw-bold d-none d-md-block"></h3>
                         <h1 class="h1 fw-bold"></h1>
                         <p class="fw-bold text-dark d-none d-md-block"><i></i></p>
-                        <div class=""><a class="btn btn-dark btn-ecomm px-4" href="shop-grid.html">Shop Now</a>
+                        <div class="">
                         </div>
                     </div>
                     <a href="javascript:;">
-                        <img src="assets/images/banners/1.png" class="img-fluid" alt="...">
+                        <img src="assets/images/banners/3.png" class="img-fluid" alt="...">
                     </a>
                 </div>
             </div>
@@ -56,7 +56,7 @@ $reviews = ReviewController::getLatestReviews();
                         </div>
                     </div>
                     <a href="javascript:;">
-                        <img src="assets/images/banners/2.png" class="img-fluid" alt="...">
+                        <img src="assets/images/banners/1.png" class="img-fluid" alt="...">
                     </a>
                 </div>
             </div>
