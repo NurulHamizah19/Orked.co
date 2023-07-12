@@ -23,6 +23,14 @@ if (isset($_POST['btnaddproduct'])) {
   $saleprice =  $_POST['txtsprice'];
   $stock = $_POST['txtstock'];
   $description = $_POST['txtdescription'];
+// Retrieve the form values
+$variableOptions = $_POST['variable_options'];
+
+// Prepare the data
+$datavar = [
+    'variableOptions' => $variableOptions,
+];
+$jsonData = json_encode($datavar);
   $system_barcode = $data->prefix . '-' . $genid;
   if (isset($_POST['txtbarcode'])) {
     $barcode = $_POST['txtbarcode'];
@@ -45,7 +53,7 @@ if (isset($_POST['btnaddproduct'])) {
     echo $f_newfile = uniqid() . '.' . $f_extension; // do not overwrite file
     $store = "productimages/" . $f_newfile;
     if ($f_extension == 'jpg' || $f_extension == 'png' || $f_extension == 'gif' || $f_extension == 'jpeg') {
-      if ($f_size >= 10000000) {
+      if ($f_size >= 100000000) {
         $error = '<script type="text/javascript">
                 jQuery(function validation(){
                     swal({
@@ -79,9 +87,12 @@ if (isset($_POST['btnaddproduct'])) {
     }
   }
   if (!isset($error)) {
-    $insert = $pdo->prepare("INSERT INTO tbl_product(pname,pcategory,purchaseprice,saleprice,pstock,pdescription,pimage,profit,barcode) values(:pname,:pcategory,:purchaseprice,:saleprice,:pstock,:pdescription,:pimage,:profit,:barcode)");
 
-    $insert->bindParam(':pname', $productname);
+    //$insert = $pdo->prepare("INSERT INTO tbl_product(pname,pcategory,purchaseprice,saleprice,pstock,pdescription,pimage,profit,barcode) values(:pname,:pcategory,:purchaseprice,:saleprice,:pstock,:pdescription,:pimage,:profit,:barcode)");
+//$insert = $pdo->prepare("INSERT INTO tbl_product(pname, pcategory, purchaseprice, saleprice, pstock, pdescription, pimage, json_data, profit, barcode) VALUES (:pname, :pcategory, :purchaseprice, :saleprice, :pstock, :pdescription, :pimage, :json_data, :profit, :barcode)");
+$insert = $pdo->prepare("INSERT INTO tbl_product(pname, pcategory, purchaseprice, saleprice, pstock, pdescription, pimage, variation, profit, barcode) VALUES (:pname, :pcategory, :purchaseprice, :saleprice, :pstock, :pdescription, :pimage, :json_data, :profit, :barcode)");  
+  
+$insert->bindParam(':pname', $productname);
     $insert->bindParam(':pcategory', $category);
     $insert->bindParam(':purchaseprice', $purchaseprice);
     $insert->bindParam(':saleprice', $saleprice);
@@ -90,7 +101,7 @@ if (isset($_POST['btnaddproduct'])) {
     $insert->bindParam(':pimage', $productimage);
     $insert->bindParam(':profit', $profit);
     $insert->bindParam(':barcode', $barcode);
-
+$insert->bindParam(':json_data', $jsonData);
 
     if ($insert->execute()) {
       echo '<script type="text/javascript">
@@ -210,6 +221,15 @@ if (isset($_POST['btnaddproduct'])) {
               <label>Product Image</label>
               <input type="file" class="input-group" name="myfile">
             </div>
+<div class="form-group required">
+    <label class="control-label">Variable Options</label>
+    <div id="variationContainer">
+        <div class="variation">
+            <input type="text" class="form-control" name="variable_options[]" placeholder="Enter Option" required="">
+        </div>
+    </div>
+    <button type="button" id="addVariationButton" class="btn btn-primary">Add Variation</button>
+</div>
           </div>
         </div>
         <div class="box-footer">
@@ -346,7 +366,27 @@ if (isset($_POST['btnaddproduct'])) {
 
   </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var addVariationButton = document.getElementById('addVariationButton');
+        var variationContainer = document.getElementById('variationContainer');
 
+        addVariationButton.addEventListener('click', function () {
+            var variationDiv = document.createElement('div');
+            variationDiv.classList.add('variation');
+
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.classList.add('form-control');
+            input.name = 'variable_options[]';
+            input.placeholder = 'Enter Option';
+            input.required = true;
+
+            variationDiv.appendChild(input);
+            variationContainer.appendChild(variationDiv);
+        });
+    });
+</script>
 <script type="text/javascript">
   function Checkradiobutton() {
 

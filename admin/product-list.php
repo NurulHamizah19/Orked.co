@@ -108,14 +108,14 @@ if($_SESSION['useremail']==""){
   <!-- /.content-wrapper -->
 <script>
   $(document).ready( function () {
-    $('#producttable').DataTable({
-      "order":[[0,"desc"]],
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    });
-} );  
+    //$('#producttable').DataTable({
+      //"order":[[0,"desc"]],
+        //dom: 'Bfrtip',
+        //buttons: [
+         //   'copy', 'csv', 'excel', 'pdf', 'print'
+        //]
+   // });
+//} );  
 </script>
 <script>
   $(document).ready( function () {

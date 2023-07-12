@@ -94,11 +94,28 @@ class CheckoutController
                 $stmt->bindValue(':price', $price);
                 $stmt->bindValue(':orderDate', $orderDate);
                 $stmt->execute();
+
+                self::updateProductStock($productId, $quantity);
             }
 
             return 'success';
         } catch (\PDOException $e) {
             return 'error';
+        }
+    }
+    public static function updateProductStock($productId, $quantity)
+    {
+        try {
+            $stmt = Database::getInstance()->prepare("
+                UPDATE tbl_product 
+                SET pstock = pstock - :quantity
+                WHERE pid = :productId
+            ");
+            $stmt->bindValue(':quantity', $quantity);
+            $stmt->bindValue(':productId', $productId);
+            $stmt->execute();
+        } catch (\PDOException $e) {
+            // Handle the exception
         }
     }
 }

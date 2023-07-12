@@ -95,20 +95,30 @@ if (isset($_GET['id'])) {
                                             </select>
                                         </div>
                                         <div class="col">
-                                            <label class="form-label">Color Code</label>
+                                            <label class="form-label">Size</label>
                                             <select class="form-select form-select-sm size">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
+                                                <option>S</option>
+                                                <option>M</option>
+                                                <option>L</option>
+                                                <option>XS</option>
+                                                <option>XL</option>
                                             </select>
                                         </div>
+					<?php if($product['variation']) : ?>
+					<div class="col">
+                                            <label class="form-label">Variation</label>
+                                            <select class="form-select form-select-sm variation">
+					 <?php
+        $jsonOptions = $product['variation'];
+        $options = json_decode($jsonOptions, true);
+
+        foreach ($options['variableOptions'] as $option) {
+            echo "<option>{$option}</option>";
+        }
+        ?>
+                                            </select>
+                                        </div>
+					<?php endif; ?>
                                     </div>
                                     <!--end row-->
                                     <div class="d-flex gap-2 mt-3">
