@@ -97,16 +97,12 @@ if (isset($_GET['id'])) {
                                         <div class="col">
                                             <label class="form-label">Size</label>
                                             <select class="form-select form-select-sm size">
-                                                <option>S</option>
-                                                <option>M</option>
-                                                <option>L</option>
-                                                <option>XS</option>
-                                                <option>XL</option>
+                                                <option>Free Size</option>
                                             </select>
                                         </div>
 					<?php if($product['variation']) : ?>
 					<div class="col">
-                                            <label class="form-label">Variation</label>
+                                            <label class="form-label">Color code</label>
                                             <select class="form-select form-select-sm variation">
 					 <?php
         $jsonOptions = $product['variation'];
