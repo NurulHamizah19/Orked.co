@@ -108,8 +108,8 @@ class CheckoutController
         try {
             $stmt = Database::getInstance()->prepare("
                 UPDATE tbl_product 
-                SET stock = stock - :quantity
-                WHERE id = :productId
+                SET pstock = pstock - :quantity
+                WHERE pid = :productId
             ");
             $stmt->bindValue(':quantity', $quantity);
             $stmt->bindValue(':productId', $productId);
