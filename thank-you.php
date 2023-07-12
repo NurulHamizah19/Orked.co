@@ -31,7 +31,7 @@
                         <p class="fs-sm mb-2">Your order has been placed and will be processed as soon as possible.</p>
                         </p>
                         <p class="fs-sm">You will be receiving an email shortly with confirmation of your order.
-                        </p><a class="btn btn-light rounded-0 mt-3 me-3" href="index.html">Go back shopping</a>
+                        </p><a class="btn btn-light rounded-0 mt-3 me-3" href="index.php">Go back shopping</a>
                     </div>
                 </div>
             </div>
