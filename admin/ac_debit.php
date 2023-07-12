@@ -25,7 +25,7 @@ if(isset($_POST['btndebit'])){
         $f_extension = strtolower(end($f_extension)); // end takes the last part of file. so it is jpg etc. ADD STRTOLOWER too.
         echo $f_newfile = uniqid().'.'.$f_extension; // do not overwrite file
         $store = "productimages/".$f_newfile;
-        if($f_extension == 'jpg' || $f_extension == '' || $f_extension == 'gif' || $f_extension == 'jpeg'){
+        if($f_extension == 'jpg' || $f_extension == 'png' || $f_extension == 'gif' || $f_extension == 'jpeg'){
             if($f_size >= 1000000){
                 $error= '<script type="text/javascript">
                 jQuery(function validation(){
@@ -50,7 +50,7 @@ if(isset($_POST['btndebit'])){
                 jQuery(function validation(){
                     swal({
                       title: "Error!",
-                      text: "Only image files are accepted (JPG, , GIF, JPEG)",
+                      text: "Only image files are accepted (JPG, PNG, GIF, JPEG)",
                       icon: "warning",
                       button: "Ok",
                     });

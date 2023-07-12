@@ -24,6 +24,7 @@ $stock_db = $row['pstock'];
 $description_db = $row['pdescription'];
 $productimage_db = $row['pimage'];
 $barcode_db = $row['barcode'];
+$variation_db = $row['variation'];
 
 if (isset($_POST['btnupdate'])) {
 
@@ -42,8 +43,17 @@ if (isset($_POST['btnupdate'])) {
   $saleprice_txt =  $_POST['txtsprice'];
   $stock_txt = $_POST['txtstock'];
   $description_txt = $_POST['txtdescription'];
+  $variation_txt = $_POST['variable_options'];
   $barcode_txt = $barcode;
   $profit_txt = $_POST['txtsprice'] - $_POST['txtpprice'];
+
+//$variableOptions = $_POST['variable_options'];
+
+// Prepare the data
+$datavar = [
+    'variableOptions' => $variation_txt,
+];
+$jsonData = json_encode($datavar);
 
   $f_name = $_FILES['myfile']['name']; // get file name
   if (!empty($f_name)) {
@@ -72,7 +82,7 @@ if (isset($_POST['btnupdate'])) {
         if (move_uploaded_file($f_tmp, $store)) {
           $f_newfile;
           if (!isset($error)) {
-            $update = $pdo->prepare("UPDATE tbl_product SET pname=:pname,pcategory=:pcategory,purchaseprice=:pprice,saleprice=:saleprice,profit=:profit,pstock=:pstock,pdescription=:pdescription,pimage=:pimage,barcode=:barcode WHERE pid = $id");
+            $update = $pdo->prepare("UPDATE tbl_product SET pname=:pname,pcategory=:pcategory,purchaseprice=:pprice,saleprice=:saleprice,profit=:profit,pstock=:pstock,pdescription=:pdescription,pimage=:pimage,barcode=:barcode,variation=:variation WHERE pid = $id");
 
             $update->bindParam(':pname', $productname_txt);
             $update->bindParam(':pcategory', $category_txt);
@@ -84,9 +94,10 @@ if (isset($_POST['btnupdate'])) {
             $update->bindParam(':pimage', $f_newfile);
             $update->bindParam(':barcode', $barcode_txt);
             $update->bindParam(':pimage', $f_newfile);
-            if ($update->execute()) {
+            $update->bindParam(':variation', $jsonData);
+	    if ($update->execute()) {
               $error = '<script type="text/javascript">
-                                jQuery(function validation(){
+               jQuery(function validation(){
                                     swal({
                                       title: "Success",
                                       text: "Product updated",
@@ -94,6 +105,11 @@ if (isset($_POST['btnupdate'])) {
                                       button: "Ok",
                                     });
                                 });
+
+				setTimeout(function() {
+  					window.location.href = window.location.href;
+				}, 2000);
+
                                 </script>';
               echo $error;
             } else {
@@ -128,7 +144,7 @@ if (isset($_POST['btnupdate'])) {
     }
   } else {
 
-    $update = $pdo->prepare("UPDATE tbl_product SET pname=:pname,pcategory=:pcategory,purchaseprice=:pprice,saleprice=:saleprice,profit=:profit,pstock=:pstock,pdescription=:pdescription,pimage=:pimage,barcode=:barcode WHERE pid = $id");
+    $update = $pdo->prepare("UPDATE tbl_product SET pname=:pname,pcategory=:pcategory,purchaseprice=:pprice,saleprice=:saleprice,profit=:profit,pstock=:pstock,pdescription=:pdescription,pimage=:pimage,barcode=:barcode,variation=:variation WHERE pid = $id");
 
     $update->bindParam(':pname', $productname_txt);
     $update->bindParam(':pcategory', $category_txt);
@@ -140,7 +156,7 @@ if (isset($_POST['btnupdate'])) {
     $update->bindParam(':pimage', $f_newfile);
     $update->bindParam(':barcode', $barcode_txt);
     $update->bindParam(':pimage', $productimage_db);
-
+    $update->bindParam(':variation', $jsonData);
     if ($update->execute()) {
       $error = '<script type="text/javascript">
                 jQuery(function validation(){
@@ -151,6 +167,9 @@ if (isset($_POST['btnupdate'])) {
                       button: "Ok",
                     });
                 });
+	setTimeout(function() {
+                                        window.location.href = window.location.href;
+                                }, 2000);
                 </script>';
       echo $error;
     } else {
@@ -196,7 +215,7 @@ $row = $select->fetch(PDO::FETCH_ASSOC);
         -------------------------->
     <div class="box box-warning">
       <div class="box-header with-border">
-        <h3 class="box-title"><a href="productlist.php" class="btn btn-primary" role="button">Back To Product List</a></h3>
+        <h3 class="box-title"><a href="product-list.php" class="btn btn-primary" role="button">Back To Product List</a></h3>
       </div>
 
       <form action="" method="post" name="formproduct" enctype="multipart/form-data">
@@ -251,13 +270,42 @@ $row = $select->fetch(PDO::FETCH_ASSOC);
               <label>Description</label>
               <textarea class="form-control" name="txtdescription" placeholder="Description" rows="4"><?php echo $description_db; ?></textarea>
             </div>
-            <div class="from-group">
+            <div class="form-group">
               <label>Product Image</label>
               <br />
               <img src="productimages/<?php echo $productimage_db; ?>" class="img-rounded" onerror="imgError(this);" width="50px" height="50px" />
               <hr>
               <input type="file" class="input-group" name="myfile">
             </div>
+    <?php if($variation_db) : ?>
+	<div class="form-group required">
+    <label class="control-label">Variable Options</label>
+    <div id="variationContainer">
+	<?php echo $variation_db; ?>
+        <?php
+        $jsonOptions = $variation_db;
+        $options = json_decode($jsonOptions, true);
+
+	foreach ($options['variableOptions'] as $option) {
+            echo '<div class="variation">';
+            echo '<input type="text" class="form-control" name="variable_options[]" placeholder="Enter Option" required value="' . $option . '">';
+            echo '</div>';
+        }
+        ?>
+    </div>
+  <button type="button" id="addVariationButton" class="btn btn-primary">Add Variation</button>
+</div>
+    <?php else :  ?>
+<div class="form-group required">
+    <label class="control-label">Variable Options</label>
+    <div id="variationContainer">
+        <div class="variation">
+            <input type="text" class="form-control" name="variable_options[]" placeholder="Enter Option" required="">
+        </div>
+    </div>
+    <button type="button" id="addVariationButton" class="btn btn-primary">Add Variation</button>
+</div>
+    <?php endif; ?>
           </div>
         </div>
         <div class="box-footer">
@@ -298,6 +346,27 @@ $row = $select->fetch(PDO::FETCH_ASSOC);
     image.src = "noimage.png";
     return true;
   }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var addVariationButton = document.getElementById('addVariationButton');
+        var variationContainer = document.getElementById('variationContainer');
+
+        addVariationButton.addEventListener('click', function () {
+            var variationDiv = document.createElement('div');
+            variationDiv.classList.add('variation');
+
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.classList.add('form-control');
+            input.name = 'variable_options[]';
+            input.placeholder = 'Enter Option';
+            input.required = true;
+
+            variationDiv.appendChild(input);
+            variationContainer.appendChild(variationDiv);
+        });
+    });
 </script>
 <?php
 include_once 'footer.php'
