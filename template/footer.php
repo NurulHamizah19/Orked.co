@@ -17,7 +17,7 @@ $categories = CategoryController::getAllCategories();
                         <h5 class="mb-4 text-uppercase fw-bold">Contact Info</h5>
                         <div class="address mb-3">
                             <h6 class="mb-0 text-uppercase fw-bold">Address</h6>
-                            <p class="mb-0">NO 40, LORONG HJ JURAIMI BATU 6 1/2, MERU, 41050 KLANG, SELANGOR</p>
+                            <p class="mb-0">25 Tingkat Bawah, Jalan Perda Utara, Bandar Perda, 14000 Bukit Mertajam, Penang</p>
                         </div>
                         <div class="phone mb-3">
                             <h6 class="mb-0 text-uppercase fw-bold">Tiktok</h6>

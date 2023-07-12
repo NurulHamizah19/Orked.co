@@ -95,13 +95,18 @@ if (isset($_GET['id'])) {
                                             </select>
                                         </div>
                                         <div class="col">
-                                            <label class="form-label">Size</label>
+                                            <label class="form-label">Color Code</label>
                                             <select class="form-select form-select-sm size">
-                                                <option>S</option>
-                                                <option>M</option>
-                                                <option>L</option>
-                                                <option>XS</option>
-                                                <option>XL</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                                <option>7</option>
+                                                <option>8</option>
+                                                <option>9</option>
+                                                <option>10</option>
                                             </select>
                                         </div>
                                     </div>

@@ -21,42 +21,42 @@ $reviews = ReviewController::getLatestReviews();
             <div class="item">
                 <div class="position-relative">
                     <div class="position-absolute top-50 slider-content translate-middle">
-                        <h3 class="h3 fw-bold d-none d-md-block">New Trending</h3>
-                        <h1 class="h1 fw-bold">Women Fashion</h1>
-                        <p class="fw-bold text-dark d-none d-md-block"><i>Last call for upto 15%</i></p>
+                        <h3 class="h3 fw-bold d-none d-md-block"></h3>
+                        <h1 class="h1 fw-bold"></h1>
+                        <p class="fw-bold text-dark d-none d-md-block"><i></i></p>
                         <div class=""><a class="btn btn-dark btn-ecomm px-4" href="shop-grid.html">Shop Now</a>
                         </div>
                     </div>
                     <a href="javascript:;">
-                        <img src="assets/images/banners/01.png" class="img-fluid" alt="...">
+                        <img src="assets/images/banners/1.png" class="img-fluid" alt="...">
                     </a>
                 </div>
             </div>
             <div class="item">
                 <div class="position-relative">
                     <div class="position-absolute top-50 slider-content translate-middle">
-                        <h3 class="h3 fw-bold d-none d-md-block">New Trending</h3>
-                        <h1 class="h1 fw-bold">Men Fashion</h1>
-                        <p class="fw-bold text-dark d-none d-md-block"><i>Last call for upto 15%</i></p>
+                        <h3 class="h3 fw-bold d-none d-md-block">New Collection</h3>
+                        <h1 class="h1 fw-bold">shawl X bawal</h1>
+                        <p class="fw-bold text-dark d-none d-md-block"><i></i></p>
                         <div class=""><a class="btn btn-dark btn-ecomm px-4" href="shop-grid.html">Shop Now</a>
                         </div>
                     </div>
                     <a href="javascript:;">
-                        <img src="assets/images/banners/02.png" class="img-fluid" alt="...">
+                        <img src="assets/images/banners/2.png" class="img-fluid" alt="...">
                     </a>
                 </div>
             </div>
             <div class="item">
                 <div class="position-relative">
                     <div class="position-absolute top-50 slider-content translate-middle">
-                        <h3 class="h3 fw-bold d-none d-md-block">New Trending</h3>
-                        <h1 class="h1 fw-bold">Kids Fashion</h1>
-                        <p class="fw-bold text-dark d-none d-md-block"><i>Last call for upto 15%</i></p>
+                        <h3 class="h3 fw-bold d-none d-md-block"></h3>
+                        <h1 class="h1 fw-bold">Kurung & Kebaya</h1>
+                        <p class="fw-bold text-dark d-none d-md-block"><i></i></p>
                         <div class=""><a class="btn btn-dark btn-ecomm px-4" href="shop-grid.html">Shop Now</a>
                         </div>
                     </div>
                     <a href="javascript:;">
-                        <img src="assets/images/banners/04.png" class="img-fluid" alt="...">
+                        <img src="assets/images/banners/2.png" class="img-fluid" alt="...">
                     </a>
                 </div>
             </div>
@@ -200,7 +200,7 @@ $reviews = ReviewController::getLatestReviews();
             <div class="container">
                 <div class="separator pb-4">
                     <div class="line"></div>
-                    <h5 class="mb-0 fw-bold separator-title">Satisfied Customer</h5>
+                    <h5 class="mb-0 fw-bold separator-title"> Customer</h5>
                     <div class="line"></div>
                 </div>
 
