@@ -35,8 +35,8 @@ $reviews = ReviewController::getLatestReviews();
             <div class="item">
                 <div class="position-relative">
                     <div class="position-absolute top-50 slider-content translate-middle">
-                        <h3 class="h3 fw-bold d-none d-md-block">New Collection</h3>
-                        <h1 class="h1 fw-bold">shawl X bawal</h1>
+                        <h3 class="h3 fw-bold d-none d-md-block"></h3>
+                        <h1 class="h1 fw-bold">Kurung & Kebaya</h1>
                         <p class="fw-bold text-dark d-none d-md-block"><i></i></p>
                         <div class=""><a class="btn btn-dark btn-ecomm px-4" href="shop-grid.html">Shop Now</a>
                         </div>
@@ -49,8 +49,8 @@ $reviews = ReviewController::getLatestReviews();
             <div class="item">
                 <div class="position-relative">
                     <div class="position-absolute top-50 slider-content translate-middle">
-                        <h3 class="h3 fw-bold d-none d-md-block"></h3>
-                        <h1 class="h1 fw-bold">Kurung & Kebaya</h1>
+                        <h3 class="h3 fw-bold d-none d-md-block">New Collection</h3>
+                        <h1 class="h1 fw-bold">Bawal X Shawl</h1>
                         <p class="fw-bold text-dark d-none d-md-block"><i></i></p>
                         <div class=""><a class="btn btn-dark btn-ecomm px-4" href="shop-grid.html">Shop Now</a>
                         </div>
