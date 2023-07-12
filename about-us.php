@@ -31,7 +31,7 @@ include_once 'template/header.php';
 				<div class="col-lg-8">
 					<div class="p-3 bg-light">
 						<div class="container">
-							<h4>Our Story</h4>
+							<h4>Our Story Lover Kuch Kuch </h4>
 							<p>Orked.Co is a local brand that sells formal apparel for women and children. It is actually a widely known local brand for the latest design of kurung and it has been operating since 2014. The main boutique is in Bukit Mertajam, Penang but we are also operating as an online business which is through social media such as Instagram and Whatsapp.
 								Owned by a spouse and with the help of 3 workers.</p>
 						</div>
